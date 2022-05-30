@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" type="text/css" />
+    <link rel="stylesheet" href="vendor\CSS\style.scss">
+    <link rel="stylesheet" href="vendor\CSS\style.css">
+    <link rel="stylesheet" href="vendor\CSS\tools.scss">
+    <link rel="stylesheet" href="vendor\CSS\tools.css">
+    <link rel="shortcut icon" type="image/png" href="vendor/images/logo.png"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un truc en + ! </title>
+</head>
+
+<body>
+
+    <header>
+        <div class="container_header">
+            <div class="toggle">
+                <i class="fa-solid fa-bars ouvrir"></i>
+                <i class="fa-solid fa-xmark fermer"></i>
+            </div>
+
+            <div id="logo_header"><a href="index.html"><img class="img_logo"  src="vendor/images/logo.png" alt="Logo"></a>
+            </div>
+
+            <nav id="nav_bar">
+                <ul class="nav_list">
+                   <li id="logo"><a href="index.html"><img class="img_logo"  src="vendor/images/logo.png" alt="Logo"></a></li>
+                   <li class="nav_item"><a href="#">Actualités</a></li>
+                   <li class="nav_item"><a href="#">A propos</a></li>
+                   <li class="nav_item"><a href="#">Nous contacter </a></li>
+                   <li class="nav_item"><a href="#">Donation</a></li>
+                   <li><button class="btn_co">Connexion</button></li>
+                   <li><button class="btn_register">Inscription</button></li> 
+                </ul>
+            </nav>
+        </div> 
+    </header>
+
+<!-- FORMULAIRE DE CONNEXION
+                   <div class="nav_form">
+                        <form method =POST action="">
+                            <label for="pseudo"></label>
+                            <input type="text" name="pseudo" id="pseudo" placeholder="Vos identifiants ">
+
+                            <label for="password"></label>
+                            <input type="text" name="pseudo" id="pseudo" placeholder="entrez votre password ">
+
+                            <input type="submit" value="Envoi">
+                        </form>
+                    
+                    </div>
+                    
+                    <input type="button" value="Inscription">
+                    -->
+
+    <main>
+        <div class="container_main">
+
+            <h1>Bienvenue sur l'association, Un truc en + !!! </h1>
+
+            <div class="containerCTA">
+                <div class="containerCTA_picture">
+                    <!--
+                    <img class="containerCTA_picture_pompom" src="vendor\images\pompom\pexels-rodnae-productions-7402833.jpg" alt="pompom-girl_disease_explanation">
+                    
+                </div>
+                 -->   
+                <div class="containerCTA_text">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates harum nisi enim laudantium facilis, repellendus voluptatibus totam pariatur iure dolorum labore, et ullam id quaerat natus deserunt alias consectetur! Earum!</p>
+                    <!-- creation d une div pour cacher les paragraphes de trop en mobile-->
+                    <div class="p_none"> 
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates harum nisi enim laudantium facilis, repellendus voluptatibus totam pariatur iure dolorum labore, et ullam id quaerat natus deserunt alias consectetur! Earum!</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates harum nisi enim laudantium facilis, repellendus voluptatibus totam pariatur iure dolorum labore, et ullam id quaerat natus deserunt alias consectetur! Earum!</p>     
+                    </div>        
+                </div>
+
+                <div class="containerCTA_btn">
+                    <input class="containerCTA_btn__btn" type="submit" value="En savoir plus">
+                </div>
+                
+            </div>  
+        </div>
+
+        
+        <section>
+            <div class="container_section">
+                <article>
+                    <div class="article_first">
+                        <div class="article_first_picture">
+                            <img loading="lazy" class="article_first_janeDoe" src="vendor/images/nouveau/janeDoe.jpg" alt="article_picture"> <!--loading lazy permet l opti des pics, favorisent les perf-->
+                        </div>
+
+                        <div class="article_first_text">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus blanditiis in, ipsam quidem quae nostrum?</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus blanditiis in, ipsam quidem quae nostrum?</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus blanditiis in, ipsam quidem quae nostrum?</p>
+                        </div>
+
+                    </div>
+
+                </article>
+                <article>
+                    <div class="article_first">
+                        <div class="article_first_picture">
+                            <img loading="lazy" class="article_first_janeDoe" src="vendor/images/nouveau/janeDoe.jpg" alt="article_picture"> <!--loading laszy permet le retardement des pics-->
+                        </div>
+
+                        <div class="article_first_text">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus blanditiis in, ipsam quidem quae nostrum?</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus blanditiis in, ipsam quidem quae nostrum?</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus blanditiis in, ipsam quidem quae nostrum?</p>
+                        </div>
+
+                    </div>
+                </article>
+                <article>
+                    <div class="articlenonetablet">
+                        <div class="article_first">
+                            <div class="article_first_picture">
+                                <img loading="lazy" class="article_first_janeDoe" src="vendor/images/nouveau/janeDoe.jpg" alt="article_picture"> <!--loading laszy permet le retardement des pics-->
+                            </div>
+
+                            <div class="article_first_text">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus blanditiis in, ipsam quidem quae nostrum?</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus blanditiis in, ipsam quidem quae nostrum?</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus blanditiis in, ipsam quidem quae nostrum?</p>
+                            </div>
+                       </div>
+                    </div>   
+                </article>
+
+            </div>
+            
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container_footer">
+            <div id="logo_footer"><a href="index.html"><img class="img_logo_footer"  src="vendor/images/logo.png" alt="Logo"></a>
+            </div>
+
+            <div class="info">
+                <a href="#" target="_blank"><h3>A propos</h3></a>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione ullam perspiciatis nesciunt excepturi dolores laudantium voluptates maiores ipsa facere ex nostrum placeat, eos ut sint veniam, quod incidunt! Eum, sunt?</p>
+            </div>
+
+            <div class="social">
+                <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram "></i> Instagram</a>
+                <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+                <a href="https://www.youtube.com/" target="_blank"><i class="fa-brands fa-youtube"></i> Youtube</a>
+            </div>
+        </div>
+    </footer>
+
+    <button id="btn"><a href="#"></a></button>
+    <script src="vendor/Javascript/app.js"></script>
+</body>
+</html>
