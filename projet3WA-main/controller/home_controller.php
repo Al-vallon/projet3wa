@@ -1,6 +1,6 @@
 <?php
 
-require('./model/home_model.php');
-require('./view/home.phtml');
+require('model/home_model.php');
+require('view/body_acceuil.phtml');
 
 ?>

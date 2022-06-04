@@ -1,0 +1,19 @@
+<?php 
+require('header.phtml');
+?>
+
+<h2>Inscription:</h2>
+
+
+<form method='POST'>
+    <?=$myForm->input('username')?>
+    <?=$myForm->input('password', 'password')?>
+    <?=$myForm->input('mail', 'mail')?>
+    <?=$myForm->submit()?>
+</form>
+<!--permet de valide si l email est ok ou pas -->
+<!--<p><?=$mail?>n'est pas une adresse email valide.</p>-->
+
+<?php 
+require('footer.phtml');
+?>

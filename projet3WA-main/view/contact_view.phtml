@@ -1,0 +1,18 @@
+<?php 
+require('header.phtml');
+?>
+
+<h2>Nous contacter</h2>
+
+
+<form method='POST'>
+    <?=$myForm->input('name')?>
+    <?=$myForm->input('mail', 'mail')?>
+    <?=$myForm->input('message')?>
+    <?=$myForm->submit()?>
+    
+</form>
+
+<?php 
+require('footer.phtml');
+?>

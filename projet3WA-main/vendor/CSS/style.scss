@@ -130,18 +130,18 @@ ul> li a:visited {
     display: none;
 }
 
-.open .ouvrir{
-    display: none;
-}
+// .open .ouvrir{
+//     display: none;
+// }
 
-.open .fermer{
-    display: block;
+// .open .fermer{
+//     display: block;
 }
 .open #nav_list{
     transform: translateX(0);
 }
 
-/*
+
 .nav_list{
     position: absolute;
     z-index: 10;
@@ -149,12 +149,12 @@ ul> li a:visited {
     left: 0px;
     height: 100vh;
     width: 100%;
-    flex-direction: column;
+    flex-direction:column;
     justify-content: space-evenly;
     transform: translateX(-100%);
     transition: transform 1s;
 }
-*/
+
 
 
 /**********************************************************************************************************

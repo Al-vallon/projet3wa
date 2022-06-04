@@ -1,6 +1,6 @@
 <?php
 
 require('./model/donation_model.php');
-require('./view/donation.phtml');
+require('./view/donation_view.phtml');
 
 ?>

@@ -15,9 +15,16 @@
         } else if($_GET['page'] === 'donation') {
             require('./controller/donation_controller.php');
             
+        } else if($_GET['page'] === 'connexion') {
+            require('./controller/connexion_controller.php');
+            
+        } else if($_GET['page'] === 'register') {
+            require('./controller/register_controller.php');
+            
         } else if($_GET['page'] === 'admin') {
             require('./controller/admin_controller.php');
-            
+           
+    
         } else if($_GET['page'] === 'NULL'){
             require('./controller/error_controller.php');
         }
