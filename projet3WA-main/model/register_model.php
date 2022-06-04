@@ -8,7 +8,7 @@ $formLabel = [
     'username' => 'Entrez votre pseudo',
     'password' => 'Entrez votre mot de passe',
     'mail'=> 'Entrez votre adresse email'
-];
+    ];
 
 
 $myForm = new Form($formLabel);
@@ -21,6 +21,7 @@ $myForm = new Form($formLabel);
         '7b8c9d64b18abb50302354af1ac4afd6'
         );
 
+//
 
 if(isset($_POST['username']) && ($_POST['password']) && ($_POST['mail'])){
     $username = htmlentities($_POST['username']);

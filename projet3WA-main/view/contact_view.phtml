@@ -8,9 +8,8 @@ require('header.phtml');
 <form method='POST'>
     <?=$myForm->input('name')?>
     <?=$myForm->input('mail', 'mail')?>
-    <?=$myForm->input('message')?>
-    <?=$myForm->submit()?>
-    
+    <?=$myForm->textarea('message')?>
+    <?=$myForm->submit()?>   
 </form>
 
 <?php 

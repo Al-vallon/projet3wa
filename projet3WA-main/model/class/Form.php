@@ -35,6 +35,10 @@ class Form {
         return($this->label($name). '<input type="'.$type.'" id="'. $name .'" name="'.$name.'" value="'. $this->getValue($name) .'" > <br>'. $this-> showError($name));
     }
     
+    public function textarea ($name, $type='text'){
+        return($this->label($name). '<textarea type="'.$type.'" id="'. $name .'" name="'.$name.'" value="'. $this->getValue($name) .'" > <br>'. $this-> showError($name));)
+    }
+    
     
     public function submit($text='Envoyer'){
         return('<input type="submit" value="'.$text.'">');
