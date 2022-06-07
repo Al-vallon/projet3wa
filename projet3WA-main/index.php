@@ -24,7 +24,9 @@
         } else if($_GET['page'] === 'admin') {
             require('./controller/admin_controller.php');
            
-    
+        } else if($_GET['page'] === 'disconnect'){
+            require('./controller/deco_controller.php');
+        
         } else if($_GET['page'] === 'NULL'){
             require('./controller/error_controller.php');
         }

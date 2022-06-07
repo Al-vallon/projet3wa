@@ -1,8 +1,6 @@
 <?php
-// call to class form
-require('class/Form.php');
 
-// name iput 
+// name input 
 $formLabel = [
     'name' => 'Entrer votre nom.',
     'mail' => 'Entrer votre mail de contact.',

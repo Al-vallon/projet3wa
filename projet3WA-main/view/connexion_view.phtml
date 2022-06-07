@@ -1,16 +1,14 @@
-<?php 
-require('header.phtml');
-?>
 
 <h2>Connexion</h2>
 
 
 <form method='POST'>
-    <?=$myForm->input('mail')?>
+    <?=$myForm->input('mail','email')?>
     <?=$myForm->input('password', 'password')?>
     <?=$myForm->submit()?>
 </form>
 
-<?php 
-require('footer.phtml');
-?>
+<!--<div> <?= $userLength . $passLength . $mailLength ?> </div>-->
+
+<p> <?= $connexion ?> </p>
+

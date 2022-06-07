@@ -1,0 +1,17 @@
+<?php
+session_start();
+?>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <?php if(isset($_SESSION['login'])): ?>
+    <p>deconnecter</p>    
+    <?php else : ?>
+    <p>connecter</p>
+    <?php endif ?>
+</body>
+</html>

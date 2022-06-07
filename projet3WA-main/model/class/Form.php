@@ -24,7 +24,7 @@ class Form {
     }
     
     protected function showError($index){
-        return isset($this->error[$index]) ? $this->error[$index] . '<br>' : null;
+        return isset($this->error[$index]) ? $this->error[$index]: null;
     }
     
     protected function label($name){
@@ -32,13 +32,12 @@ class Form {
     }
     
     public function input($name, $type='text'){
-        return($this->label($name). '<input type="'.$type.'" id="'. $name .'" name="'.$name.'" value="'. $this->getValue($name) .'" > <br>'. $this-> showError($name));
+        return($this->label($name). '<input type="'.$type.'" id="'. $name .'" name="'.$name.'" value="'. $this->getValue($name) .'" >'. $this-> showError($name));
     }
     
-    public function textarea ($name, $type='text'){
-        return($this->label($name). '<textarea type="'.$type.'" id="'. $name .'" name="'.$name.'" value="'. $this->getValue($name) .'" > <br>'. $this-> showError($name));)
+     public function textarea($name, $type='text'){
+        return($this->label($name). '<textarea type="'.$type.'" id="'. $name .'" name="'.$name.'" rows="10" cols="50" value="'. $this->getValue($name) .'" >'. $this-> showError($name));
     }
-    
     
     public function submit($text='Envoyer'){
         return('<input type="submit" value="'.$text.'">');

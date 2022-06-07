@@ -1,10 +1,7 @@
 <?php
 //cookie 
 session_start();
-
-require('class/Form.php');
-
-
+date_default_timezone_set('Europe/Paris');
 
 // input mail pass
 $formLabel = [
@@ -20,56 +17,56 @@ $db = new PDO(
         'alexandrevallon',
         '7b8c9d64b18abb50302354af1ac4afd6');
 
-
-// check if the mail is inside the database
-
-
-if(isset($_POST['mail'])){
-    $mail=htmlentities($_POST['mail']);
+    $login='';
+    $validationMail='';
+    $connexion='';
     
-    $queryMailLogin= $db->prepare('SELECT * FROM users WHERE users.mail=:mail');
-    $params=[
-        'mail'=> $mail,
-        ];
+    if(isset($_POST['mail']) && isset($_POST['password']) && !empty($_POST['mail']) && !empty($_POST['password'])){
+        $mail=htmlentities($_POST['mail']);
+        $pass=htmlentities($_POST['password']);
         
-    $queryMailLogin->execute($params);
+        $queryLogin= $db->prepare('SELECT mail,password FROM users WHERE users.mail=:mail');
+        $params=[
+            'mail'=> $mail,
+            ];
+            
+        $queryLogin->execute($params);
+        
+        $resultLogin=$queryLogin->fetch(PDO::FETCH_ASSOC);
     
-    $resultMailLogin=$queryMailLogin->fetch(PDO::FETCH_ASSOC);
-    
-    
-    if($resultMailLogin !== false){
-        echo('Mail');
-    
-};
-
-// check if the password is inside the database
-$connection='';
-if(isset($_POST['password'])){
-    $pass=htmlentities($_POST['password']);
-    
-    $queryPass=$db->prepare('SELECT * FROM users WHERE users.password= :password');
-    $params=[
-        'password'=> $pass,
-        ]; 
- 
-    $queryPass->execute($params);
-    
-    $resultPass=$queryPass->fetch(PDO::FETCH_ASSOC);
-    
-    if (password_verify($resultPass,$password)) {
-        $connection = 'Vous êtes bien connecté';
+        
+        // check mail is on database.
+        if($resultLogin['mail'] == $mail){
+            $validationMail=('le mail est bon'); 
+            } else {
+            $validationMail=('il y a une erreur');
+            };
+          
+        // if the mail is ok, check the password is it's ok session is running
+        if(password_verify($pass, $resultLogin['password'])){
+            
+            $_SESSION['login'] = true;
+            header('Location:index.php');
+            exit();
+            
+            //else wrong register, try again
         } else {
-        $connection = 'Mauvais mot de passe...';
-    }
-  
-};
+            $connexion = 'il  y a une erreur, veuillez réessayer';
+            };
+        
+    }; 
 
-
+        
+    
 
 
 // setcookie('username', htmlentities($_POST['username']), time() + 60*60*24*30);
 
-
-
+// suppression de la session et des cookies.
+// setcookie('pseudo','',time()-10);
+// setcookie('date','',time()-10);
+// session_destroy();
+// header('Location:index.php');
+// exit();
 
 ?>
