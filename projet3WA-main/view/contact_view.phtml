@@ -4,9 +4,15 @@
 
 <form method='POST'>
     <?=$myForm->input('name')?>
-    <?=$myForm->input('mail', 'mail')?>
+    <?=$myForm->input('mail', 'email')?>
+    <?=$myForm->input('objet')?>
     <?=$myForm->textarea('message')?>
     <?=$myForm->submit()?>
-    
 </form>
 
+<p> <?= $nameLength ?></p>
+<p> <?= $mailLength ?></p>
+<p> <?= $objetLength ?></p>
+<p> <?= $msgLength ?></p>
+
+<p> <?= $msgOk ?></p>

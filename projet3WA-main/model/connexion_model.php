@@ -1,5 +1,5 @@
 <?php
-//cookie 
+// create a cookie session
 session_start();
 date_default_timezone_set('Europe/Paris');
 
@@ -16,8 +16,8 @@ $db = new PDO(
         'mysql:host=db.3wa.io;port=3306;dbname=alexandrevallon_trucen+',
         'alexandrevallon',
         '7b8c9d64b18abb50302354af1ac4afd6');
-
-    $login='';
+    $mailLength='';
+    $passLength='';
     $validationMail='';
     $connexion='';
     
@@ -34,39 +34,36 @@ $db = new PDO(
         
         $resultLogin=$queryLogin->fetch(PDO::FETCH_ASSOC);
     
+        if (strlen($mail)>50){
+            $mailLength='le mail contient trop de caractère';
+        }
+        
+        if (strlen($passLength)>255){
+            $passLength='le password contient trop de caractère';
+        }
+        
+        if( empty($mailLength) && empty($passLength)){
         
         // check mail is on database.
         if($resultLogin['mail'] == $mail){
-            $validationMail=('le mail est bon'); 
             } else {
             $validationMail=('il y a une erreur');
             };
-          
+            
+            
         // if the mail is ok, check the password is it's ok session is running
-        if(password_verify($pass, $resultLogin['password'])){
-            
-            $_SESSION['login'] = true;
-            header('Location:index.php');
-            exit();
-            
-            //else wrong register, try again
-        } else {
-            $connexion = 'il  y a une erreur, veuillez réessayer';
-            };
-        
+            if(password_verify($pass, $resultLogin['password'])){
+                
+                $_SESSION['mail'] = $mail;
+                $_SESSION['password'] = $pass;
+                
+                header('Location:index.php');
+                exit();
+                
+                //else wrong register, try again
+            } else {
+                $connexion = 'il  y a une erreur, veuillez réessayer';
+                };
+        };    
     }; 
 
-        
-    
-
-
-// setcookie('username', htmlentities($_POST['username']), time() + 60*60*24*30);
-
-// suppression de la session et des cookies.
-// setcookie('pseudo','',time()-10);
-// setcookie('date','',time()-10);
-// session_destroy();
-// header('Location:index.php');
-// exit();
-
-?>

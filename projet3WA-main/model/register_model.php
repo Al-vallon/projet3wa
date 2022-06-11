@@ -18,9 +18,12 @@ $myForm = new Form($formLabel);
         '7b8c9d64b18abb50302354af1ac4afd6'
         );
 
+    // decalration of variables length for secure.
     $userLength='';
     $passLength='';
     $mailLength='';
+    $wrongMail= '';
+    
     if(isset($_POST['username']) && ($_POST['password']) && ($_POST['mail']) && !empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['mail'])){
         $username = htmlentities($_POST['username']);
         $password = htmlentities($_POST['password']);
@@ -41,21 +44,26 @@ $myForm = new Form($formLabel);
         $resultMail=$queryMail->fetch(PDO::FETCH_ASSOC);
         
         // secure the length inputs.
-        $userLength='';
-        $passLength='';
-        $mailLength='';
-        if (strlen($username)>50){
-           $userLength='le nom d utilisateur est trop long'; 
-            } else if (strlen($passLength)>255){
-                $passLength= 'le password contient trop de caractère';
-            } else if (strlen($mailLength)>50){
-                $mailLength ='le mail contient trop de caractère';
-            }
         
-        // checking if the mail is on the database
-    
-        if($resultMail !== false){
-            echo('email deja utiliser!');
+        if (strlen($username)>50){
+          $userLength ='le nom d utilisateur est trop long';
+        }
+        
+        if (strlen($passLength)>255){
+            $passLength='le password contient trop de caractère';
+        }
+        
+        if (strlen($mail)>50){
+            $mailLength='le mail contient trop de caractère';
+        }
+        
+            
+        
+        if(empty($userLength) && empty($passLength) && empty($mailLength)){
+            // checking if the mail is on the database
+           
+            if($resultMail !== false){
+                $wrongMail='email deja utiliser!';
             }else{
                 $query = $db->prepare('INSERT INTO users (role_id,username, password, mail, reg_date) VALUES (:role_id,:username, :password, :mail, :reg_date)');
                 $params = [
@@ -68,8 +76,8 @@ $myForm = new Form($formLabel);
                 
                 $query->execute($params);
                 
+                header('Location:index.php?page=connexion'); //plutot renvoyer sur la page de connexion
+                }
             };
-    };
-    
-    // header('Location:index.php?page=connexion'); //plutot renvoyer sur la page de connexion 
+        }
 ?>
