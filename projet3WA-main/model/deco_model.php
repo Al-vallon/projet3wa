@@ -1,4 +1,3 @@
-
 <?php 
 session_start();
 //test if the session is active or not

@@ -1,17 +1,51 @@
 <?php
-session_start();
+// session_start();
 ?>
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<body>
-    <?php if(isset($_SESSION['login'])): ?>
-    <p>deconnecter</p>    
-    <?php else : ?>
-    <p>connecter</p>
-    <?php endif ?>
-</body>
-</html>
+
+<!--$createArticle-->
+
+<!--<body>-->
+<!--    <?php if(isset($_SESSION['login'])): ?>-->
+<!--    <p>deconnecter</p>    -->
+<!--    <?php else : ?>-->
+<!--    <p>connecter</p>-->
+<!--    <?php endif ?>-->
+<!--</body>-->
+
+
+<form method='POST'>
+    <?=$createArticle->input('title')?>
+    <?=$createArticle->textarea('text', 'text')?>
+    <?=$createArticle->selector('image')?>
+    <?=$createArticle->submit()?>
+</form>
+
+
+<p><?= $titleLength ?></p>
+<p><?= $textLength ?></p>
+<p><?= $imageLength ?></p>
+
+<!--upload d image -->
+<div>
+    <h3>Comment cela marche ? </h3>
+    <p>Vous Choisissez une image sur votre ordinateur (max de 3mo) puis vous cliquer sur envoyer. Ensuite votre image s'affichera en dessous du formulaire.</p>
+</div>
+
+
+<section id="envoiImage">
+    <form  method="post" action="index.php" enctype="multipart/form-data">
+        <input type="file" name=<?= $nameOfInputUpload ?> required /> <br>
+        <button type ="submit"> Envoyer </button> <br> <br/>
+        <?= $isPost ? $message : null ?>
+    </form>
+</section>
+
+
+<section id="affichageImage"> 
+<?php if ($isPost && isset($urlImage)): ?>
+<img  src= <?= $urlImage ?> alt='une image chargée' /> 
+Lien de votre image : <a href= '<?=$urlImage ?>' target='_blank' > cliquez-ici </a>" 
+<?php else : ?>
+<h3> Votre image s'affichera ici </h3>
+<?php endif ?>
+</section>

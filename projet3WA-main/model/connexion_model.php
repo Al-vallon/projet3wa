@@ -1,4 +1,5 @@
 <?php
+// pas de declare(strict_types=1) il y aconflit avec session start.
 // create a cookie session
 session_start();
 date_default_timezone_set('Europe/Paris');
@@ -12,10 +13,14 @@ $formLabel = [
 $myForm = new Form($formLabel);
 
 // connexion DATABASE
-$db = new PDO(
-        'mysql:host=db.3wa.io;port=3306;dbname=alexandrevallon_trucen+',
-        'alexandrevallon',
-        '7b8c9d64b18abb50302354af1ac4afd6');
+$db = new Database();
+
+
+//CLEAN
+// $db = new PDO(
+//         'mysql:host=db.3wa.io;port=3306;dbname=alexandrevallon_trucen+',
+//         'alexandrevallon',
+//         '7b8c9d64b18abb50302354af1ac4afd6');
     $mailLength='';
     $passLength='';
     $validationMail='';
@@ -25,14 +30,18 @@ $db = new PDO(
         $mail=htmlentities($_POST['mail']);
         $pass=htmlentities($_POST['password']);
         
-        $queryLogin= $db->prepare('SELECT mail,password FROM users WHERE users.mail=:mail');
         $params=[
             'mail'=> $mail,
             ];
+        // $queryLogin= $db->prepare('SELECT mail,password FROM users WHERE users.mail=:mail');
+        // $params=[
+        //     'mail'=> $mail,
+        //     ];
+        $resultLogin= $db->prepare('SELECT mail,password FROM users WHERE users.mail=:mail',$params, true);
             
-        $queryLogin->execute($params);
+        // $queryLogin->execute($params);
         
-        $resultLogin=$queryLogin->fetch(PDO::FETCH_ASSOC);
+        // $resultLogin=$queryLogin->fetch(PDO::FETCH_ASSOC);
     
         if (strlen($mail)>50){
             $mailLength='le mail contient trop de caractère';

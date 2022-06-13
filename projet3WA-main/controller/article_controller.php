@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+require('model/class/Database.php');
 require('model/class/Article.php');
 require('model/article_model.php');
 

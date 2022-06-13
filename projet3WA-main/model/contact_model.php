@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 date_default_timezone_set('Europe/Paris');
 // name input 
 $formLabel = [
@@ -10,19 +11,16 @@ $formLabel = [
 
 $myForm = new Form($formLabel);
 
-    $db = new PDO(
-            'mysql:host=db.3wa.io;port=3306;dbname=alexandrevallon_trucen+',
-            'alexandrevallon',
-            '7b8c9d64b18abb50302354af1ac4afd6');
-        
-        
-    $nameLength='';
-    $mailLength='';
-    $objetLength='';
-    $msgLength='';
-    $msgOk='';
-    
-    if(isset($_POST['name']) && ($_POST['mail']) && ($_POST['objet']) && ($_POST['message']) && !empty($_POST['name']) && !empty($_POST['mail']) && !empty($_POST['objet']) && !empty($_POST['message'])){
+$db = new Database();
+
+// check length of inputs
+$nameLength='';
+$mailLength='';
+$objetLength='';
+$msgLength='';
+$msgOk='';
+
+if(isset($_POST['name']) && ($_POST['mail']) && ($_POST['objet']) && ($_POST['message']) && !empty($_POST['name']) && !empty($_POST['mail']) && !empty($_POST['objet']) && !empty($_POST['message'])){
         $name = htmlentities($_POST['name']);
         $mail = htmlentities($_POST['mail']);
         $objet = htmlentities($_POST['objet']);
@@ -31,7 +29,7 @@ $myForm = new Form($formLabel);
       
       
         // secure the length inputs.
-         if(strlen($objet)>255){
+        if(strlen($objet)>255){
             $objetLength ='le titre contient trop de caractères';
         }
         
@@ -47,23 +45,21 @@ $myForm = new Form($formLabel);
           $nameLength ='le nom est trop long'; 
         }
          
-
+    
         if(empty($nameLength) && empty($mailLength) && empty($objetLength) && empty($msgLength)){
-                $query = $db->prepare('INSERT INTO msgcontact (objet, message, mail, date, name) VALUES (:objet,:message, :mail, :date, :name)');
-                $params = [
+            $params = [
                     'objet' => $objet,
                     'message' => $message,
                     'mail' => $mail,
                     'date' => $date,
                     'name' => $name,
                     ];
+            $queryContact = $db->prepare('INSERT INTO msgcontact (objet, message, mail, date, name) VALUES (:objet,:message, :mail, :date, :name)', $params , true);
                 
-                $query->execute($params);
-        
-            // header('Location:index.php?page=home');
+            header('Location:index.php?page=home');
       
         };
-        
-    };
+    
+};
 
 ?>

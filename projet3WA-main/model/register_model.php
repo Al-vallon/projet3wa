@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 date_default_timezone_set('Europe/Paris');
 // input for registering
 $formLabel = [
@@ -11,12 +11,7 @@ $formLabel = [
 $myForm = new Form($formLabel);
 
 // connexion DATABASE
-// $db = new Database();
-   $db=new PDO(
-        'mysql:host=db.3wa.io;port=3306;dbname=alexandrevallon_trucen+',
-        'alexandrevallon',
-        '7b8c9d64b18abb50302354af1ac4afd6'
-        );
+$db = new Database();
 
     // decalration of variables length for secure.
     $userLength='';
@@ -34,15 +29,14 @@ $myForm = new Form($formLabel);
         // secure password for database
         $password = password_hash($password, PASSWORD_DEFAULT);
         
-        $queryMail= $db->prepare('SELECT * FROM users WHERE users.mail=:mail');
-        $params=[
+        
+         $params=[
             'mail'=> $mail,
             ];
             
-        $queryMail->execute($params); 
+        $resultMail =$db->prepare('SELECT * FROM users WHERE users.mail=:mail', $params, true);
         
-        $resultMail=$queryMail->fetch(PDO::FETCH_ASSOC);
-        
+    
         // secure the length inputs.
         
         if (strlen($username)>50){
@@ -65,7 +59,6 @@ $myForm = new Form($formLabel);
             if($resultMail !== false){
                 $wrongMail='email deja utiliser!';
             }else{
-                $query = $db->prepare('INSERT INTO users (role_id,username, password, mail, reg_date) VALUES (:role_id,:username, :password, :mail, :reg_date)');
                 $params = [
                     'role_id' => 2,
                     'username' => $username,
@@ -73,10 +66,11 @@ $myForm = new Form($formLabel);
                     'mail' => $mail,
                     'reg_date' => $reg_date,
                     ];
+                    
+                $query = $db->prepare('INSERT INTO users (role_id,username, password, mail, reg_date) VALUES (:role_id,:username, :password, :mail, :reg_date)', $params, true);
+             
                 
-                $query->execute($params);
-                
-                header('Location:index.php?page=connexion'); //plutot renvoyer sur la page de connexion
+                header('Location:index.php?page=connexion'); //redirection to log in page.
                 }
             };
         }

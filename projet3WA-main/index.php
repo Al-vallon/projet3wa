@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
     if(isset($_GET['page'])) {
         if($_GET['page'] === 'home') {
             require'./controller/home_controller.php';
