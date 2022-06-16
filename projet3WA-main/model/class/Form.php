@@ -1,9 +1,10 @@
 <?php
-
 declare(strict_types=1);
+
 class Form {
     protected array $data;
     protected array $error;
+    protected array $listTitle;
     
     public function __construct(array $data = []){
         $this->data = $data;
@@ -44,7 +45,20 @@ class Form {
         return($this->label($name). '<select id="'. $name .'" <option value="'. $this->getValue($name) .'" />"'. $this->getValue($name) .'"</option></select>'. $this-> showError($name));
     }
     
+    public function selectorForeach(string $name, array $listTitle):string
+    {
+        $html = '<select id="'. $name .'">';
+        foreach($listTitle as $key =>$value){
+            $html .= '<option value="'. $key .'" />"'. $value .'"</option>';
+        }
+        $html .= '</select>';
+        return $html; 
+    }
+    
     public function submit(string $text='Envoyer'):string{
         return('<input type="submit" value="'.$text.'">');
     }
+    
+    
+    
 }

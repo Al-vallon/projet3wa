@@ -7,7 +7,6 @@ declare(strict_types=1);
         private string $text = '';  
         
         
-        
     public function __construct(array $urlDb, string $titre, string $text){
         $this->urlDb = $urlDb;
         $this->titre = $titre;

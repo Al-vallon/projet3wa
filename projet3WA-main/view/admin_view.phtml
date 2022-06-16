@@ -2,8 +2,6 @@
 // session_start();
 ?>
 
-<!--$createArticle-->
-
 <!--<body>-->
 <!--    <?php if(isset($_SESSION['login'])): ?>-->
 <!--    <p>deconnecter</p>    -->
@@ -12,40 +10,112 @@
 <!--    <?php endif ?>-->
 <!--</body>-->
 
-
-<form method='POST'>
-    <?=$createArticle->input('title')?>
-    <?=$createArticle->textarea('text', 'text')?>
-    <?=$createArticle->selector('image')?>
-    <?=$createArticle->submit()?>
-</form>
+<nav class=admin_nav>
+    <li class="nav_item_admin"><a href="https://alexandrevallon.sites.3wa.io/projet3WA-main/index.php?page=admin&addarticle"/>Création</a></li>
+    <li class="nav_item_admin"><a href="https://alexandrevallon.sites.3wa.io/projet3WA-main/index.php?page=admin&change">Modification</a></li>
+    <li class="nav_item_admin"><a href="https://alexandrevallon.sites.3wa.io/projet3WA-main/index.php?page=admin&delete">Suppression</a></li>
+</nav>
 
 
-<p><?= $titleLength ?></p>
-<p><?= $textLength ?></p>
-<p><?= $imageLength ?></p>
+<!--***************************************************-->
+<!--*-->
+<!--*                creation-->
+<!--*-->
+<!--***************************************************-->
 
-<!--upload d image -->
-<div>
-    <h3>Comment cela marche ? </h3>
-    <p>Vous Choisissez une image sur votre ordinateur (max de 3mo) puis vous cliquer sur envoyer. Ensuite votre image s'affichera en dessous du formulaire.</p>
-</div>
+<!--upload image -->
+
+<?php 
 
 
-<section id="envoiImage">
-    <form  method="post" action="index.php" enctype="multipart/form-data">
-        <input type="file" name=<?= $nameOfInputUpload ?> required /> <br>
-        <button type ="submit"> Envoyer </button> <br> <br/>
-        <?= $isPost ? $message : null ?>
+if(isset($_GET['addarticle'])): ?>
+    <h4>creation d'articles</h4>
+    <div>
+        <h4>Comment cela marche ? </h4>
+        <p>Vous Choisissez une image sur votre ordinateur (max de 3mo) puis vous cliquer sur envoyer. Ensuite votre image s'affichera en dessous du formulaire.</p>
+    </div>
+    
+    <section id="envoiImage">
+        <form class="form-group" method="post"  enctype="multipart/form-data">
+            <input type="file" name=<?= $nameOfInputUpload ?> required />
+            <button type ="submit"> Envoyer </button>
+            <?= $isPost ? $message : null ?>
+        </form>
+    </section>
+    
+    <section id="affichageImage"> 
+        <?php if ($isPost && isset($urlImage)): ?>
+        <img  src= <?= $urlImage ?> alt='une image chargée' /> 
+        Lien de votre image : <a href= '<?=$urlImage ?>' target='_blank' > cliquez-ici </a>" 
+        <?php else : ?>
+        <h3> Votre image s'affichera ici </h3>
+        <?php endif ?>
+    </section>
+    
+    <?php if(!empty($_FILES)): ?>
+    
+    <form class="form-group" method='POST'>
+        <?=$Article->input('title')?>
+        <?=$Article->textarea('text', 'text')?>
+        <?=$Article->submit()?>
     </form>
-</section>
-
-
-<section id="affichageImage"> 
-<?php if ($isPost && isset($urlImage)): ?>
-<img  src= <?= $urlImage ?> alt='une image chargée' /> 
-Lien de votre image : <a href= '<?=$urlImage ?>' target='_blank' > cliquez-ici </a>" 
-<?php else : ?>
-<h3> Votre image s'affichera ici </h3>
+    <?php endif ?>
+    
+    <p><?= $titleLength ?></p>
+    <p><?= $textLength ?></p>
+    
 <?php endif ?>
-</section>
+
+
+<!--***************************************************-->
+<!--*-->
+<!--*               modification articles-->
+<!--*-->
+<!--***************************************************-->
+
+
+
+<!--select the articles for mod.-->
+<?php 
+if(isset($_GET['change'])): ?>
+    <h4>modifier un article</h4>
+    
+    
+    <!--select the title of article for mod.-->
+    
+    <form class="form-group" method='POST'>
+        <?=$Article->selectorForeach('titre', $articleForEdit)?>
+        <?=$Article->submit()?>
+    </form>
+    
+    <!-- when the title is selected, go to mod. -->
+     <!--if valide alors panel des modifs-->
+    
+    <form class="form-group" method='POST'>
+        <?=$Article->input('title')?>
+        <?=$Article->textarea('text', 'text')?>
+        <?=$Article->submit()?>
+    </form>
+    
+
+<?php endif ?>
+
+
+<!--***************************************************-->
+<!--*-->
+<!--*                delete-->
+<!--*    -->
+<!--***************************************************-->
+
+
+<?php 
+if(isset($_GET['delete'])): ?>
+    <h4>Supprimer un article</h4>
+    <!--select the title of article for mod.-->
+    
+
+    
+    
+    
+<?php endif ?>
+
