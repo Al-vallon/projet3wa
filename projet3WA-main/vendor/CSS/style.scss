@@ -46,11 +46,15 @@ body{
 }
 
 
+
 /**********************************************************************************************************
 *
 *                                   HEADER
 *
 ***********************************************************************************************************/
+.header{
+    background: transparent;
+}
 
 #logo_header{
     @include img_resp;
@@ -123,20 +127,20 @@ ul> li a:visited {
 
 .ouvrir{
     display: block;
-
 }
 
 .fermer{
     display: none;
 }
 
-// .open .ouvrir{
-//     display: none;
-// }
-
-// .open .fermer{
-//     display: block;
+.open .ouvrir{
+    display: none;
 }
+
+.open .fermer{
+     display: block;
+}
+
 .open #nav_list{
     transform: translateX(0);
 }
@@ -409,6 +413,15 @@ h3{
 *                             header DESKTOP 
 *
 ************************************************************/
+    .header{
+        position: absolute;
+        width: 100%;
+        height: 8vh;
+        top: 0;
+        left: 0;
+        padding: 0 2rem;
+    }
+
     .toggle{
         display: none;
     }
@@ -461,6 +474,7 @@ h3{
 *                      main DESKTOP
 *
 **************************************************************/
+
     .containerCTA_picture{
         height: 48rem;
     }  
