@@ -3,9 +3,9 @@ declare(strict_types=1);
 date_default_timezone_set('Europe/Paris');
 // input for registering
 $formLabel = [
-    'username' => 'Entrez votre pseudo',
-    'password' => 'Entrez votre mot de passe',
-    'mail'=> 'Entrez votre adresse email'
+    'username' => 'Pseudo *',
+    'password' => 'Mot de passe*',
+    'mail'=> 'Email*'
 ];
 
 $myForm = new Form($formLabel);

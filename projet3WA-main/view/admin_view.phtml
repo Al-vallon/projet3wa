@@ -46,7 +46,7 @@ if(isset($_GET['addarticle'])): ?>
     <section id="affichageImage"> 
         <?php if ($isPost && isset($urlImage)): ?>
         <img  src= <?= $urlImage ?> alt='une image chargée' /> 
-        Lien de votre image : <a href= '<?=$urlImage ?>' target='_blank' > cliquez-ici </a>" 
+        <p><?= $message ?> </p> 
         <?php else : ?>
         <h3> Votre image s'affichera ici </h3>
         <?php endif ?>
@@ -59,9 +59,9 @@ if(isset($_GET['addarticle'])): ?>
         <?=$Article->textarea('text', 'text')?>
         <?=$Article->submit()?>
     </form>
+    
     <?php endif ?>
     
-    <p><?= $titleLength ?></p>
     <p><?= $textLength ?></p>
     
 <?php endif ?>
@@ -84,14 +84,7 @@ if(isset($_GET['change'])): ?>
     <!--select the title of article for mod.-->
     
     <form class="form-group" method='POST'>
-        <?=$Article->selectorForeach('titre', $articleForEdit)?>
-        <?=$Article->submit()?>
-    </form>
-    
-    <!-- when the title is selected, go to mod. -->
-     <!--if valide alors panel des modifs-->
-    
-    <form class="form-group" method='POST'>
+        <?=$Article->selectorForeach('id', $titleForEdit)?>
         <?=$Article->input('title')?>
         <?=$Article->textarea('text', 'text')?>
         <?=$Article->submit()?>
@@ -104,7 +97,7 @@ if(isset($_GET['change'])): ?>
 <!--***************************************************-->
 <!--*-->
 <!--*                delete-->
-<!--*    -->
+<!-  -*    -->
 <!--***************************************************-->
 
 
@@ -113,8 +106,17 @@ if(isset($_GET['delete'])): ?>
     <h4>Supprimer un article</h4>
     <!--select the title of article for mod.-->
     
-
+    <form class ="form-group" method='POST'>
+        <?=$Article->selectorForeach('id', $titleForEdit)?>
+        <?=$Article->submit()?>
+    </form>
     
+   <!--<?php if(submit): ?>-->
+       
+   <!--   <p></p>-->
+   
+   
+   <!-- <?php endif ?>-->
     
     
 <?php endif ?>

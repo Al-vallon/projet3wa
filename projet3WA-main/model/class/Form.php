@@ -47,7 +47,7 @@ class Form {
     
     public function selectorForeach(string $name, array $listTitle):string
     {
-        $html = '<select id="'. $name .'">';
+        $html = '<select name="'. $name .'" id="'. $name .'">';
         foreach($listTitle as $key =>$value){
             $html .= '<option value="'. $key .'" />"'. $value .'"</option>';
         }

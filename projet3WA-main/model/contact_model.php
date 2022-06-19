@@ -3,10 +3,10 @@ declare(strict_types=1);
 date_default_timezone_set('Europe/Paris');
 // name input 
 $formLabel = [
-    'name' => 'Entrez votre nom.',
-    'mail' => 'Entrez votre mail de contact.',
-    'objet' => 'Entrez un titre',
-    'message' => 'Entrer votre message.'
+    'name' => 'Nom *',
+    'mail' => 'Mail de contact*',
+    'objet' => 'Titre*',
+    'message' => 'Message *'
 ];
 
 $myForm = new Form($formLabel);
