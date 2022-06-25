@@ -34,7 +34,7 @@ class Form {
     }
     
     public function input(string $name, string $type='text'):string{
-        return($this->label($name). '<input type="'.$type.'" id="'. $name .'" name="'.$name.'" value="'. $this->getValue($name) .'" ></input>'. $this-> showError($name));
+        return($this->label($name). '<input placeholder="'.$name.'" type="'.$type.'" id="'. $name .'" name="'.$name.'" value="'. $this->getValue($name) .'" ></input>'. $this-> showError($name));
     }
     
     public function textarea(string $name):string{
@@ -45,7 +45,7 @@ class Form {
         return($this->label($name). '<select id="'. $name .'" <option value="'. $this->getValue($name) .'" />"'. $this->getValue($name) .'"</option></select>'. $this-> showError($name));
     }
     
-    public function selectorForeach(string $name, array $listTitle):string
+    public function selectorForeach(string $name, array $listTitle):string | array
     {
         $html = '<select name="'. $name .'" id="'. $name .'">';
         foreach($listTitle as $key =>$value){
@@ -56,7 +56,7 @@ class Form {
     }
     
     public function submit(string $text='Envoyer'):string{
-        return('<input type="submit" value="'.$text.'">');
+        return('<input id="btn" type="submit" name="'. $text.'" value="'.$text.'">');
     }
     
     

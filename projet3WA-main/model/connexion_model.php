@@ -29,7 +29,12 @@ if(isset($_POST['mail']) && isset($_POST['password']) && !empty($_POST['mail']) 
         'mail'=> $mail,
     ];
  
-    $resultLogin= $db->prepare('SELECT mail,password FROM users WHERE users.mail=:mail',$params, true);
+    $resultLogin= $db->prepare('
+        SELECT mail,password 
+        FROM users 
+        WHERE users.mail=:mail',
+        $params, true
+    );
     
     
     //Check the size of input 
@@ -46,25 +51,27 @@ if(isset($_POST['mail']) && isset($_POST['password']) && !empty($_POST['mail']) 
     if( empty($mailLength) && empty($passLength)){
     
     // check mail is on database.
-    if($resultLogin['mail'] == $mail){
-        } else {
-        $validationMail=('il y a une erreur');
-        };
-        
-        
-    // if the mail is ok, check the password is it's ok session is running
-        if(password_verify($pass, $resultLogin['password'])){
-            
-            $_SESSION['mail'] = $mail;
-            $_SESSION['password'] = $pass;
-            
-            header('Location:index.php');
-            exit();
-            
-            //else wrong register, try again
-        } else {
-            $connexion = 'il  y a une erreur, veuillez réessayer';
+        if($resultLogin['mail'] == $mail){
+            } else {
+            $validationMail=('il y a une erreur');
             };
-    };    
+            
+            
+        // if the mail is ok, check the password is it's ok for user's session is running 
+            if(password_verify($pass, $resultLogin['password'])){
+                
+                // $_SESSION['mail'] = $mail;
+                // $_SESSION['password'] = $pass;
+                
+                $_SESSION['user'] = $mail . $pass; 
+                header('Location:index.php');
+                exit();
+                
+                //else wrong register, try again
+            } else {
+                $connexion = 'il  y a une erreur, veuillez réessayer';
+                };
+            
+        }    
+       
 }; 
-

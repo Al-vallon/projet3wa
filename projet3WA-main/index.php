@@ -36,4 +36,3 @@ declare(strict_types=1);
         require('./controller/home_controller.php');
     };
 ?> 
- 

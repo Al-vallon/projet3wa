@@ -2,44 +2,35 @@
 declare(strict_types=1);
 
     class Article {
-        private array $urlDb;
-        private string $titre = '';
-        private string $text = '';  
+ 
+        protected array $data=[];
         
+        // $data=$listArticle 
+        public function __construct(array $data = []){
+            $this->data = $data;
+        }
         
-    public function __construct(array $urlDb, string $titre, string $text){
-        $this->urlDb = $urlDb;
-        $this->titre = $titre;
-        $this ->text = $text;
-        // var_dump($titre);
-        // var_dump($text);
-        // var_dump($urlDb);
+        // when loop is on, function creatArticle is update with loop infos
+        public function generateAllArticle():string
+        {
+            $result = '';
+            foreach($this->data as $article){
+                $result .= $this->creatArticle($article);
+            }
+             return $result;
+        }
+        
+        // create article skeletor for phtml articke
+        protected function creatArticle(array $article):string
+        {
+            $html ='<div class="article">';
+            $html .= '<div class="article_first">';
+            $html .= '<h3>'. $article['titre'] .'</h3>';
+            $html .= '<div class="article_first_picture"> <img src="vendor/images/upload/'.$article['picture_name'].'" alt="'.$article['alt'].'"></div>';
+            $html .= '<div class="article_first_text">';
+            $html .= '<p>'. nl2br($article['text']) . '</p>';
+            $html .= '<span>'. $article['date'] .'</span></div></div></div>';
+            return $html;
+        }
     }
-    
-    
-    // get id of url picture.
-    public function idPicture(int $id){
-        $db = new Database();
-        $params=[
-                'id'=> $id,
-            ];
-            
-        $urlDb= $db->prepare('SELECT picture_url FROM article WHERE article.id=:id DESC',$params, false);
-            
-    }
-    
-    // create auto pic and title for card
-    public function divImg(array $urlDb, string $titre): array | string{
-        return('<img class="card_pic" src="'. $urlDb .'" atl="'. $titre . '" >');
-    }
-    
-    //title & text
-    public function divText(string $titre, string $text):string{
-        return('<h3"' . $titre .'" </h3> <p"' . $text .'" ' );
-    }
-    
-    
-}
-
-
 ?>

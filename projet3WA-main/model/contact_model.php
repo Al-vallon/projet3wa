@@ -54,9 +54,14 @@ if(isset($_POST['name']) && ($_POST['mail']) && ($_POST['objet']) && ($_POST['me
                     'date' => $date,
                     'name' => $name,
                     ];
-            $queryContact = $db->prepare('INSERT INTO msgcontact (objet, message, mail, date, name) VALUES (:objet,:message, :mail, :date, :name)', $params , true);
+            $queryContact = $db->prepare('
+            INSERT INTO msgcontact 
+            (objet, message, mail, date, name)
+            VALUES 
+            (:objet,:message, :mail, :date, :name)',
+            $params , true);
                 
-            header('Location:index.php?page=home');
+            // header('Location:index.php?page=home');
       
         };
     

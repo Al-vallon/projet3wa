@@ -9,6 +9,7 @@
 <!--    <p>connecter</p>-->
 <!--    <?php endif ?>-->
 <!--</body>-->
+<h1>gestion admin</h1>
 
 <nav class=admin_nav>
     <li class="nav_item_admin"><a href="https://alexandrevallon.sites.3wa.io/projet3WA-main/index.php?page=admin&addarticle"/>Création</a></li>
@@ -23,48 +24,58 @@
 <!--*-->
 <!--***************************************************-->
 
+
+
 <!--upload image -->
-
-<?php 
-
-
+<?php
 if(isset($_GET['addarticle'])): ?>
-    <h4>creation d'articles</h4>
-    <div>
-        <h4>Comment cela marche ? </h4>
-        <p>Vous Choisissez une image sur votre ordinateur (max de 3mo) puis vous cliquer sur envoyer. Ensuite votre image s'affichera en dessous du formulaire.</p>
-    </div>
+    <h2>creation d'articles</h2>
     
-    <section id="envoiImage">
-        <form class="form-group" method="post"  enctype="multipart/form-data">
-            <input type="file" name=<?= $nameOfInputUpload ?> required />
-            <button type ="submit"> Envoyer </button>
-            <?= $isPost ? $message : null ?>
-        </form>
-    </section>
+        <div class='form-'>
+            <h4>Envoi d'une image</h4>
+            <p>Choisissez une image sur votre ordinateur (max de 3mo) puis vous cliquer sur envoyer. Ensuite votre image s'affichera au dessus du formulaire à remplir.</p>
+        
+        
+            <section id="envoiImage">
+                <form class="form-group" method="post"  enctype="multipart/form-data">
+                    <input type="file" name="<?= $nameOfInputUpload ?>"/>
+                    <button type ="submit" id="btn"> Envoyer </button>
+                 </form>   
+                 
+                    <?php if($isPost): ?>
+                        <div class='modal'>
+                            <?= $isPost ? $message : null ?>
+                        <?php endif ?>
+                        </div>
+            </section>
+        </div>
     
-    <section id="affichageImage"> 
-        <?php if ($isPost && isset($urlImage)): ?>
-        <img  src= <?= $urlImage ?> alt='une image chargée' /> 
-        <p><?= $message ?> </p> 
-        <?php else : ?>
-        <h3> Votre image s'affichera ici </h3>
+
+        <section id="affichageImage"> 
+            <?php if ($isPost && isset($urlImage)): ?>
+                <img  src= <?= $urlImage ?> alt='une image chargée' /> 
+            <?php endif ?>
+        </section>
+    
+    
+        <?php if($validFile): ?>
+            <form class="form-group" method='POST'>
+                <?=$Article->input('title')?>
+                <?=$Article->textarea('text', 'text')?>
+                <?=$Article->submit()?>
+            </form>
+            
+            <?php if(isset($_POST['Envoyer'])): ?>
+            <div class='modal'>
+                    <p class="modal_text"><i>Article créé !</i></p>
+                <?php endif ?>
+            </div>
         <?php endif ?>
-    </section>
-    
-    <?php if(!empty($_FILES)): ?>
-    
-    <form class="form-group" method='POST'>
-        <?=$Article->input('title')?>
-        <?=$Article->textarea('text', 'text')?>
-        <?=$Article->submit()?>
-    </form>
-    
-    <?php endif ?>
-    
-    <p><?= $textLength ?></p>
-    
+        
+        
+
 <?php endif ?>
+
 
 
 <!--***************************************************-->
@@ -74,50 +85,62 @@ if(isset($_GET['addarticle'])): ?>
 <!--***************************************************-->
 
 
-
 <!--select the articles for mod.-->
 <?php 
 if(isset($_GET['change'])): ?>
-    <h4>modifier un article</h4>
-    
+    <h2>modifier un article</h2>
+    <p>Selection l'article a modifier</p>
     
     <!--select the title of article for mod.-->
-    
-    <form class="form-group" method='POST'>
-        <?=$Article->selectorForeach('id', $titleForEdit)?>
-        <?=$Article->input('title')?>
-        <?=$Article->textarea('text', 'text')?>
-        <?=$Article->submit()?>
-    </form>
-    
-
+        
+        <form class="form-group" method='POST'>
+            <?=$Article->selectorForeach('id', $titleForEdit)?>
+            <?=$Article->submit()?>
+        </form>
+        
+        <?php if(isset($_POST['Envoyer'])): ?>
+            
+            <div class='modal'>
+                <p>Vous Pouvez changer le titre et le contenu de l'article</p>
+            </div>
+        <?php endif ?>
+        
+        
+            <form class ="form-group" method='POST'>
+                <?=$Article->input('title')?>
+                <?=$Article->textarea('text', 'text')?>
+                <?=$Article->submit()?>
+            </form>
+        
+           
+        
 <?php endif ?>
 
 
 <!--***************************************************-->
 <!--*-->
 <!--*                delete-->
-<!-  -*    -->
+<!--<!-*-->
 <!--***************************************************-->
 
 
 <?php 
 if(isset($_GET['delete'])): ?>
-    <h4>Supprimer un article</h4>
+
+    <h2>Supprimer un article</h2>
     <!--select the title of article for mod.-->
     
-    <form class ="form-group" method='POST'>
-        <?=$Article->selectorForeach('id', $titleForEdit)?>
-        <?=$Article->submit()?>
-    </form>
-    
-   <!--<?php if(submit): ?>-->
-       
-   <!--   <p></p>-->
-   
-   
-   <!-- <?php endif ?>-->
-    
-    
+        <form class ="form-group" method='POST'>
+            <p><i>Sélectionner l'article à supprimer </i></p>
+            <?=$Article->selectorForeach('id', $titleForEdit)?>
+            <?=$Article->submit()?>
+        </form>   
+        
+        
+        <?php if(isset($_POST['Envoyer'])): ?>
+            <div class='modal'>
+            <p class="modal_text"><i>L'article à été supprimé </i></p>
+            <?php endif ?>
+            </div>
+      
 <?php endif ?>
-

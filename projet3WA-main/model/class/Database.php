@@ -41,9 +41,9 @@ class Database{
         $req = $this->getPDO()->prepare($statement);
         $req->execute($params);
         if($one){
-            $data = $req->fetch();
+            $data = $req->fetch(PDO::FETCH_ASSOC);
         } else {
-            $data = $req->fetchAll();
+            $data = $req->fetchAll(PDO::FETCH_ASSOC);
         }
         return $data;
     }

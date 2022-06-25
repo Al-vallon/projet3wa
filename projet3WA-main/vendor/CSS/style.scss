@@ -4,6 +4,8 @@ $color_down1:#219EF7;
 $color_down2:#F4D328;
 $color_font:#fff;
 $black:#000000;
+$red:#ff000
+$inputBorder: #0d0c22;
 
 
 @mixin flex_center{
@@ -35,7 +37,7 @@ $black:#000000;
 /** PARAMETRES GENERAUX **/ 
 
 body{
-    margin: 1vh;
+    margin: 0;
     padding: 0;
     max-width: 100vw;
     font-family: 'Buda', cursive;
@@ -45,12 +47,46 @@ body{
     background: linear-gradient(90deg, $color_down1 20%, $color_down2 80%);
 }
 
+/**FORM**/
 
+.form-group {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    margin: auto;
+    line-height: 28px;
+    border: 2px solid transparent;
+    padding: .2rem 0;
+    outline: none;
+    background-color: transparent;
+    color: $inputBorder;
+    transition: .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+input:focus, input:hover {
+     outline: none;
+     padding: .2rem 1rem;
+     border-radius: 1rem;
+     border-color: #7a9cc6;
+}
+
+input::placeholder {
+     color: #777;
+}
+
+input:focus::placeholder {
+     opacity: 0;
+     transition: opacity .3s;
+}
 /**********************************************************************************************************
 *
 *                                   HEADER
 *
 ***********************************************************************************************************/
+// header{
+//     background:transparent;
+// }
 
 #logo_header{
     @include img_resp;
@@ -60,34 +96,73 @@ body{
     width: 4rem;
 }
 
-#nav_list{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    z-index: 10;
-    top: 0px;
-    left: 0px;
-    height: 100vh;
-    width: 100%;
-    background-color: $black;
-    justify-content: space-evenly;
-    transform: translateX(-100%);
-    transition: transform 1s;
-}
-
 .nav_item{
     margin-right: 5rem;
     text-transform: uppercase;
     font-weight: 600;
+    margin: 2rem;
 }
 
 .nav_item a{
     @include list-decoration_none;
-    font-family: basiliq;font-family: 'Balsamiq Sans', cursive;
+    font-family: 'Balsamiq Sans', cursive;
+}
+
+/* burger menu*/
+.menuItem {
+  display: block;
+  margin: 2rem 4rem;
+  font-size: 1.8rem;
+  color: white;
+  text-decoration: none;
+}
+
+.menuItem:hover {
+  text-decoration: underline;
+}
+
+.hamburger {
+  position: fixed;
+  z-index: 100;
+  top: 2rem;
+  right: 3rem;
+  padding: 4px;
+  border: black solid 1px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.closeIcon {
+  display: none;
+}
+
+.menu {
+  position: fixed;
+  transform: translateY(-100%);
+  transition: transform 1s;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  background: #515151;
+  color: white;
+  list-style: none;
+  padding-top: 4rem;
+  height: 100vh;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.showMenu {
+  transform: translateY(0);
 }
 
 ul> li a:visited {
-    color: $black;
+    color: $red;
  }
 
 .btn_co{
@@ -98,63 +173,40 @@ ul> li a:visited {
     margin: 0em 5em;
     cursor: pointer;
     font-weight: bold;
-    font-family: basiliq;font-family: 'Balsamiq Sans', cursive;
+    font-family: 'Balsamiq Sans', cursive;
     letter-spacing: 1px;
 }
 
 .btn_register{
     border-radius: 20px;
     background:transparent;
-    border:2px solid $black;
+    border:2px solid $red;
     padding: 0.5rem 1rem ;
     cursor: pointer;
     font-weight: bold;
-    font-family: basiliq;font-family: 'Balsamiq Sans', cursive;
+    font-family: 'Balsamiq Sans', cursive;
     letter-spacing: 1px;
 }
 
-.toggle{
-    display: block;
-    cursor: pointer;
-    font-size: 2rem;
-    position: relative;
-    z-index: 10;
+/* pop up alert / Modal*/
+
+.modal{
+    @include flex_column;
+    @include img_resp;
+    border: 2px solid black;
+    border-radius: 15px;
+    box-shadow: 5px 10px 34px;
+    margin-top: 5rem;
+    padding: 2em;
+
 }
 
-.ouvrir{
-    display: block;
-
-}
-
-.fermer{
-    display: none;
-}
-
-// .open .ouvrir{
-//     display: none;
-// }
-
-// .open .fermer{
-//     display: block;
-}
-.open #nav_list{
-    transform: translateX(0);
-}
-
-
-.nav_list{
+.close-Modal {
     position: absolute;
-    z-index: 10;
-    top: 0px;
-    left: 0px;
-    height: 100vh;
-    width: 100%;
-    flex-direction:column;
-    justify-content: space-evenly;
-    transform: translateX(-100%);
-    transition: transform 1s;
+    top: 39rem;
+    right: 1.5rem;
+    color: $red;
 }
-
 
 
 /**********************************************************************************************************
@@ -409,18 +461,20 @@ h3{
 *                             header DESKTOP 
 *
 ************************************************************/
-    .toggle{
+  
+    .hamburger{
         display: none;
     }
-
+    
     #logo_header{
         display: none;
     }
-    #nav_bar{
+    
+    .nav_bar{
         display:flex;
     }
 
-    .nav_list{
+    .menu{
         @include list_decoration_none;
         display: flex;
         justify-content: flex-end;
@@ -434,14 +488,16 @@ h3{
         margin-right: 5rem;
         text-transform: uppercase;
         font-weight: 600;
+        color : red;
     }
+    
     .nav_item a{
         text-decoration: none;  
     }
+    
     #logo:first-child{
         margin-right: auto;
         margin-left: 2rem;
-        
     }
     
     #logo{
@@ -451,10 +507,6 @@ h3{
         width: 4rem;
     }
     
-    
-    
-    
-
 
 /*********************************************************
 *

@@ -1,7 +1,6 @@
 
 <h2>Nous contacter</h2>
 
-
 <form class="form-group" method='POST'>
     <?=$myForm->input('name')?>
     <?=$myForm->input('mail', 'email')?>
@@ -10,9 +9,16 @@
     <?=$myForm->submit()?>
 </form>
 
+     
+    <?php if(isset($_POST['Envoyer'])): ?>
+    <div class='modal'>
+        <p> <?= $msgOk ?></p>
+        <p class="modal_text"> Message envoyé</p>
+        <button id="btn"><a href ='https://alexandrevallon.sites.3wa.io/projet3WA-main/index.php'>Accueil</a></button>
+        <?php endif ?>
+    </div> 
+    
 <p> <?= $nameLength ?></p>
 <p> <?= $mailLength ?></p>
 <p> <?= $objetLength ?></p>
 <p> <?= $msgLength ?></p>
-
-<p> <?= $msgOk ?></p>
