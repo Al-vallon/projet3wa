@@ -4,7 +4,7 @@ $color_down1:#219EF7;
 $color_down2:#F4D328;
 $color_font:#fff;
 $black:#000000;
-$red:#ff000
+$red:#ff0000;
 $inputBorder: #0d0c22;
 
 
@@ -44,7 +44,7 @@ body{
     font-size: 1em;
     box-sizing: border-box;
     background: $color_down1;
-    background: linear-gradient(90deg, $color_down1 20%, $color_down2 80%);
+    // background: linear-gradient(90deg, $color_down1 20%, $color_down2 80%);
 }
 
 /**FORM**/
@@ -79,6 +79,8 @@ input:focus::placeholder {
      opacity: 0;
      transition: opacity .3s;
 }
+
+
 /**********************************************************************************************************
 *
 *                                   HEADER
@@ -138,7 +140,7 @@ input:focus::placeholder {
 
 .menu {
   position: fixed;
-  transform: translateY(-100%);
+  transform: translateY(-130%);
   transition: transform 1s;
   top: 0;
   left: 0;
@@ -461,7 +463,10 @@ h3{
 *                             header DESKTOP 
 *
 ************************************************************/
-  
+    header {
+    height: 8vh;
+    }
+      
     .hamburger{
         display: none;
     }
@@ -471,28 +476,37 @@ h3{
     }
     
     .nav_bar{
-        display:flex;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: space-between;
+        align-items: center
     }
 
-    .menu{
-        @include list_decoration_none;
+ 
+    .menu {
+        position: static;
         display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        border-bottom: 2px solid black;
-        border-top:2px solid black;
-        width: 100vw ; 
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        top:0em;
+        left:0em;
+        list-style: none;
+        transform: translateY(0%);
+        background:transparent;
     }
     
+    
     .nav_item{
-        margin-right: 5rem;
-        text-transform: uppercase;
-        font-weight: 600;
-        color : red;
+        margin-right: 1rem;
+        font-weight: 100;
+        font-size: medium;
     }
     
     .nav_item a{
-        text-decoration: none;  
+        text-decoration: none;
+        margin-right: 1rem;
     }
     
     #logo:first-child{

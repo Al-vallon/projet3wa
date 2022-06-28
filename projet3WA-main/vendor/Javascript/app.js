@@ -1,3 +1,4 @@
+/*HAMBURGER MENU*/
 const menu = document.querySelector(".menu");
 const menuItems = document.querySelectorAll(".menuItem");
 const hamburger= document.querySelector(".hamburger");
@@ -17,3 +18,20 @@ function toggleMenu() {
 }
 
 hamburger.addEventListener("click", toggleMenu);
+
+
+/* 404 redirection*/
+
+let count = 3;
+
+function decrement() {
+    count--;
+    if(count == 0) {
+        window.location = 'index.php';
+    }
+    else {
+        document.getElementById("count").innerHTML = count;
+        setTimeout(decrement, 2000);
+    }
+}
+setTimeout(decrement, 2000);

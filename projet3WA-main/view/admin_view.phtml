@@ -1,20 +1,12 @@
-<?php
-// session_start();
-?>
 
-<!--<body>-->
-<!--    <?php if(isset($_SESSION['login'])): ?>-->
-<!--    <p>deconnecter</p>    -->
-<!--    <?php else : ?>-->
-<!--    <p>connecter</p>-->
-<!--    <?php endif ?>-->
-<!--</body>-->
 <h1>gestion admin</h1>
 
 <nav class=admin_nav>
-    <li class="nav_item_admin"><a href="https://alexandrevallon.sites.3wa.io/projet3WA-main/index.php?page=admin&addarticle"/>Création</a></li>
-    <li class="nav_item_admin"><a href="https://alexandrevallon.sites.3wa.io/projet3WA-main/index.php?page=admin&change">Modification</a></li>
-    <li class="nav_item_admin"><a href="https://alexandrevallon.sites.3wa.io/projet3WA-main/index.php?page=admin&delete">Suppression</a></li>
+    <li class="nav_item_admin"><a href="index.php?page=admin&addarticle"/>Création</a></li>
+    <li class="nav_item_admin"><a href="index.php?page=admin&change">Modification</a></li>
+    <li class="nav_item_admin"><a href="index.php?page=admin&delete">Suppression</a></li>
+    <li class="nav_item_admin"><a href="index.php?page=admin&deleteUser">gestion d'utilisateur</a></li>
+    <li class="nav_item_admin"><a href="index.php?page=admin&newsletter">Newsletters</a></li>
 </nav>
 
 
@@ -59,21 +51,21 @@ if(isset($_GET['addarticle'])): ?>
     
     
         <?php if($validFile): ?>
-            <form class="form-group" method='POST'>
+            <form class="form-group" method='POST'>+
                 <?=$Article->input('title')?>
                 <?=$Article->textarea('text', 'text')?>
                 <?=$Article->submit()?>
             </form>
+        
             
             <?php if(isset($_POST['Envoyer'])): ?>
-            <div class='modal'>
-                    <p class="modal_text"><i>Article créé !</i></p>
-                <?php endif ?>
-            </div>
+                <div class='modal'>
+                        <p class="modal_text"><i>Article créé !</i></p>
+                </div>        
+            <?php endif ?>
+                
         <?php endif ?>
         
-        
-
 <?php endif ?>
 
 
@@ -103,18 +95,26 @@ if(isset($_GET['change'])): ?>
             <div class='modal'>
                 <p>Vous Pouvez changer le titre et le contenu de l'article</p>
             </div>
-        <?php endif ?>
-        
-        
+
             <form class ="form-group" method='POST'>
                 <?=$Article->input('title')?>
                 <?=$Article->textarea('text', 'text')?>
-                <?=$Article->submit()?>
+                <?=$Article->submit('Valider')?>
             </form>
-        
-           
+            
+         <?php endif ?>   
+         
+         <?php if(isset($_POST['Valider'])): ?>
+             <div class='modal'>
+                <p>Article modifié</p>
+            </div>
+        <?php endif ?>
+            
+          
         
 <?php endif ?>
+
+
 
 
 <!--***************************************************-->
@@ -144,3 +144,68 @@ if(isset($_GET['delete'])): ?>
             </div>
       
 <?php endif ?>
+
+
+<!--***************************************************-->
+<!--*-->
+<!--*             <gestion utilisateur>-->            
+<!--<!-*-->
+<!--***************************************************-->
+
+<?php
+    if(isset($_GET['deleteUser'])): ?>
+        <h2>Gestion utilisateurs</h2>
+        
+            <table>
+                 <thead>
+                     <tr>
+                         <th colspan="3">liste des utilisateurs</th>
+                     </tr>         
+                </thead>
+                
+                 <tbody>
+                     <tr>
+                            <?php foreach ($listUsers as $listUser){
+                                $listUsers['username'] = $listUser['username'];
+                                // $listUser['mail']                      
+                            }
+                            ?>
+                            
+                                <td> <?php $listUser['username'] ?> </td>
+                              <td> <?php $listUser['mail'] ?></td>
+                                <td></td>
+                     </tr>
+                 </tbody>
+             </table>
+
+
+    <?php endif ?>
+
+<!--***************************************************-->
+<!--*-->
+<!--*             </newsletter>-->            
+<!--<!-*-->
+<!--***************************************************-->
+
+<?php
+
+if(isset($_GET['newsletter'])): ?>
+    <h2>Création d'une newsletter</h2>
+    
+        <form class ="form-group" method='POST'>
+            <p><i>Rédaction</i></p>
+            <?=$Article->input('title')?>
+            <?=$Article->imput('mail', 'email')?>
+            <?=$Article->textarea('text', 'text')?>
+            <?=$Article->submit('Envoyer')?>
+        </form>   
+        
+        
+        <?php if(isset($_POST['Envoyer'])): ?>
+            <div class='modal'>
+            <p class="modal_text"><i>La newsletter est partie </i></p>
+            <?php endif ?>
+            </div>
+            
+<?php endif ?>
+

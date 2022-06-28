@@ -34,7 +34,7 @@ class Form {
     }
     
     public function input(string $name, string $type='text'):string{
-        return($this->label($name). '<input placeholder="'.$name.'" type="'.$type.'" id="'. $name .'" name="'.$name.'" value="'. $this->getValue($name) .'" ></input>'. $this-> showError($name));
+        return($this->label($name). '<input placeholder="'.$name.'" minlength="6" type="'.$type.'" id="'. $name .'" name="'.$name.'" value="'. $this->getValue($name) .'" ></input>'. $this-> showError($name));
     }
     
     public function textarea(string $name):string{
@@ -59,6 +59,13 @@ class Form {
         return('<input id="btn" type="submit" name="'. $text.'" value="'.$text.'">');
     }
     
-    
+    // public function table(string $text):string {
+    //     $table='<tbody>
+    //                 <tr>
+    //                     <td></td>
+    //                     <td></td>
+    //                 </tr>
+    //             </tbody>'
+    // }
     
 }

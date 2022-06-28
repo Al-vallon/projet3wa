@@ -1,7 +1,7 @@
 <?php
+session_start();
 // pas de declare(strict_types=1) il y aconflit avec session start.
 // create a cookie session
-session_start();
 date_default_timezone_set('Europe/Paris');
 
 // input mail pass
@@ -15,9 +15,10 @@ $myForm = new Form($formLabel);
 // connexion DATABASE
 $db = new Database();
 
-
 $mailLength='';
 $passLength='';
+$emptyMail='';
+$emptyPass='';
 $validationMail='';
 $connexion='';
 
@@ -30,48 +31,44 @@ if(isset($_POST['mail']) && isset($_POST['password']) && !empty($_POST['mail']) 
     ];
  
     $resultLogin= $db->prepare('
-        SELECT mail,password 
+        SELECT mail,password, role_id 
         FROM users 
         WHERE users.mail=:mail',
         $params, true
     );
     
-    
     //Check the size of input 
-    if (strlen($mail)>50)
+    if(strlen($mail)>50)
     {
         $mailLength='le mail contient trop de caractère';
     }
     
-    if (strlen($passLength)>255)
+    if(strlen($passLength)>255)
     {
         $passLength='le password contient trop de caractère';
     }
     
-    if( empty($mailLength) && empty($passLength)){
+    
+    if(empty($mailLength) && empty($passLength)){
     
     // check mail is on database.
         if($resultLogin['mail'] == $mail){
-            } else {
-            $validationMail=('il y a une erreur');
-            };
-            
+        } else {
+        $validationMail=('il y a une erreur');
+        };
             
         // if the mail is ok, check the password is it's ok for user's session is running 
-            if(password_verify($pass, $resultLogin['password'])){
-                
-                // $_SESSION['mail'] = $mail;
-                // $_SESSION['password'] = $pass;
-                
-                $_SESSION['user'] = $mail . $pass; 
-                header('Location:index.php');
-                exit();
-                
-                //else wrong register, try again
+        if(password_verify($pass, $resultLogin['password'])){
+            $_SESSION['user'] = $mail . $pass; 
+            $_SESSION['role'] = $resultLogin['role_id']; 
+            header('Location:index.php');
+            exit();
+            
+            //else wrong register, try again
             } else {
                 $connexion = 'il  y a une erreur, veuillez réessayer';
-                };
+            };
             
-        }    
+    }    
        
 }; 

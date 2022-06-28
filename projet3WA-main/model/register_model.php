@@ -1,5 +1,6 @@
 <?php
-declare(strict_types=1);
+session_start();
+// declare(strict_types=1);
 date_default_timezone_set('Europe/Paris');
 // input for registering
 $formLabel = [
@@ -73,19 +74,13 @@ if(empty($userLength) && empty($passLength) && empty($mailLength)){
             
         $query = $db->prepare('
             INSERT INTO users 
-            (role_id,username, 
-            password, 
-            mail, 
-            reg_date) 
-            VALUES (:role_id,
-            :username, 
-            :password, 
-            :mail, 
-            :reg_date)',
+            (role_id, username, password, mail, reg_date) 
+            VALUES (:role_id, :username, :password, :mail, :reg_date)',
             $params, true);
      
         
         header('Location:index.php?page=connexion'); //redirection to log in page.
+        
         }
     };
 }

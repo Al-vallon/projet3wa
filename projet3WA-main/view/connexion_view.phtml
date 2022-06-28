@@ -8,9 +8,12 @@
     <?=$myForm->submit()?>
 </form>
 
-
-<p><?= $passLength ?></p>
-<p><?= $mailLength ?></p>
-<p><?= $validationMail ?></p>
-<p><?= $connexion ?> </p>
+<?php if(isset($_POST['Envoyer'])): ?>
+    <div class='modal'> 
+        <p class="modal_text"><i><?= $passLength ?></i></p>
+        <p class="modal_text"><i><?= $mailLength ?></i></p>
+        <p class="modal_text"><i><?= $validationMail ?></i></p>
+        <p class="modal_text"><i><?= $connexion ?></i></p>
+    </div> 
+<?php endif ?> 
 
