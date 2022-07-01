@@ -1,12 +1,13 @@
 
-<h1>gestion admin</h1>
+<h1>Gestion admin</h1>
 
 <nav class=admin_nav>
     <li class="nav_item_admin"><a href="index.php?page=admin&addarticle"/>Création</a></li>
     <li class="nav_item_admin"><a href="index.php?page=admin&change">Modification</a></li>
     <li class="nav_item_admin"><a href="index.php?page=admin&delete">Suppression</a></li>
-    <li class="nav_item_admin"><a href="index.php?page=admin&deleteUser">gestion d'utilisateur</a></li>
-    <li class="nav_item_admin"><a href="index.php?page=admin&newsletter">Newsletters</a></li>
+    <li class="nav_item_admin"><a href="index.php?page=admin&msg">Message contact</a></li>
+    <li class="nav_item_admin"><a href="index.php?page=admin&deleteUser">Gestion d'utilisateur</a></li>
+    <!--<li class="nav_item_admin"><a href="index.php?page=admin&newsletter">Newsletters</a></li>-->
 </nav>
 
 
@@ -25,21 +26,21 @@ if(isset($_GET['addarticle'])): ?>
     
         <div class='form-'>
             <h4>Envoi d'une image</h4>
-            <p>Choisissez une image sur votre ordinateur (max de 3mo) puis vous cliquer sur envoyer. Ensuite votre image s'affichera au dessus du formulaire à remplir.</p>
+                <p>Choisissez une image sur votre ordinateur (max de 3mo) puis vous cliquer sur envoyer. Ensuite votre image s'affichera au dessus du formulaire à remplir.</p>
         
         
-            <section id="envoiImage">
-                <form class="form-group" method="post"  enctype="multipart/form-data">
-                    <input type="file" name="<?= $nameOfInputUpload ?>"/>
-                    <button type ="submit" id="btn"> Envoyer </button>
-                 </form>   
-                 
-                    <?php if($isPost): ?>
-                        <div class='modal'>
-                            <?= $isPost ? $message : null ?>
-                        <?php endif ?>
-                        </div>
-            </section>
+                <section id="envoiImage">
+                    <form class="form-group" method="post"  enctype="multipart/form-data">
+                        <input type="file" name="<?= $nameOfInputUpload ?>"/>
+                        <button type ="submit" id="btn"> Envoyer </button>
+                     </form>   
+                     
+                        <?php if($isPost): ?>
+                            <div class='modal'>
+                                <?= $isPost ? $message : null ?>
+                            </div>
+                        <?php endif ?>    
+                </section>
         </div>
     
 
@@ -51,7 +52,7 @@ if(isset($_GET['addarticle'])): ?>
     
     
         <?php if($validFile): ?>
-            <form class="form-group" method='POST'>+
+            <form class="form-group" method='POST'>
                 <?=$Article->input('title')?>
                 <?=$Article->textarea('text', 'text')?>
                 <?=$Article->submit()?>
@@ -61,7 +62,8 @@ if(isset($_GET['addarticle'])): ?>
             <?php if(isset($_POST['Envoyer'])): ?>
                 <div class='modal'>
                         <p class="modal_text"><i>Article créé !</i></p>
-                </div>        
+                </div>  
+                <?= var_dump(isset($_POST['Envoyer'])) ?>
             <?php endif ?>
                 
         <?php endif ?>
@@ -79,41 +81,40 @@ if(isset($_GET['addarticle'])): ?>
 
 <!--select the articles for mod.-->
 <?php 
-if(isset($_GET['change'])): ?>
-    <h2>modifier un article</h2>
-    <p>Selection l'article a modifier</p>
-    
-    <!--select the title of article for mod.-->
+    if(isset($_GET['change'])): ?>
+        <h2>modifier un article</h2>
+        <p>Selection l'article a modifier</p>
         
-        <form class="form-group" method='POST'>
-            <?=$Article->selectorForeach('id', $titleForEdit)?>
-            <?=$Article->submit()?>
-        </form>
-        
-        <?php if(isset($_POST['Envoyer'])): ?>
+        <!--select the title of article for mod.-->
             
-            <div class='modal'>
-                <p>Vous Pouvez changer le titre et le contenu de l'article</p>
-            </div>
-
-            <form class ="form-group" method='POST'>
-                <?=$Article->input('title')?>
-                <?=$Article->textarea('text', 'text')?>
-                <?=$Article->submit('Valider')?>
+            <form class="form-group" method='POST'>
+                <?=$Article->selectorForeach('id', $titleForEdit)?>
+                <?=$Article->submit()?>
             </form>
             
-         <?php endif ?>   
-         
-         <?php if(isset($_POST['Valider'])): ?>
-             <div class='modal'>
-                <p>Article modifié</p>
-            </div>
-        <?php endif ?>
+            <?php if(isset($_POST['Envoyer'])): ?>
+                
+                <div class='modal'>
+                    <p>Vous Pouvez changer le titre et le contenu de l'article</p>
+                </div>
+    
+                <form class ="form-group" method='POST'>
+                    <?=$Article->input('title')?>
+                    <?=$Article->textarea('text', 'text')?>
+                    <?=$Article->submit('Valider')?>
+                </form>
+                
+             <?php endif ?>   
+             
+             <?php if(isset($_POST['Valider'])): ?>
+                 <div class='modal'>
+                    <p>Article modifié</p>
+                </div>
+            <?php endif ?>
+                
+              
             
-          
-        
-<?php endif ?>
-
+    <?php endif ?>
 
 
 
@@ -125,25 +126,25 @@ if(isset($_GET['change'])): ?>
 
 
 <?php 
-if(isset($_GET['delete'])): ?>
-
-    <h2>Supprimer un article</h2>
-    <!--select the title of article for mod.-->
+    if(isset($_GET['delete'])): ?>
     
-        <form class ="form-group" method='POST'>
-            <p><i>Sélectionner l'article à supprimer </i></p>
-            <?=$Article->selectorForeach('id', $titleForEdit)?>
-            <?=$Article->submit()?>
-        </form>   
+        <h2>Supprimer un article</h2>
+        <!--select the title of article for mod.-->
         
-        
-        <?php if(isset($_POST['Envoyer'])): ?>
-            <div class='modal'>
-            <p class="modal_text"><i>L'article à été supprimé </i></p>
+            <form class ="form-group" method='POST'>
+                <p><i>Sélectionner l'article à supprimer </i></p>
+                <?=$Article->selectorForeach('id', $titleForEdit)?>
+                <?=$Article->submit()?>
+            </form>   
+            
+            
+            <?php if(isset($_POST['Envoyer'])): ?>
+                <div class='modal'>
+                <p class="modal_text"><i>L'article à été supprimé </i></p>
+                </div>
             <?php endif ?>
-            </div>
-      
-<?php endif ?>
+            
+    <?php endif ?>
 
 
 <!--***************************************************-->
@@ -155,57 +156,109 @@ if(isset($_GET['delete'])): ?>
 <?php
     if(isset($_GET['deleteUser'])): ?>
         <h2>Gestion utilisateurs</h2>
-        
-            <table>
-                 <thead>
-                     <tr>
-                         <th colspan="3">liste des utilisateurs</th>
-                     </tr>         
-                </thead>
+                <table>
+                     <thead>
+                         <tr>
+                             <th colspan="3">liste des utilisateurs</th>
+                         </tr>         
+                    </thead>
+                    
+                    <tbody>
+                             <?php foreach ($listUsers as $listUser) : ?>
+                             <tr>
+                                <td><?= $listUser['id'] ?></td>
+                                <td><?= $listUser['username'] ?></td>
+                                <td> <?= $listUser['mail'] ?></td>
+                                <td><form method='POST' action='#'><input type="hidden" name="id" value='<?= $listUser['id'] ?>'/><input type='submit' name='Envoyer'></form></td>
+                            </tr>    
+                             <?php endforeach ?>
+                    </tbody>
+                </table>
                 
-                 <tbody>
-                     <tr>
-                            <?php foreach ($listUsers as $listUser){
-                                $listUsers['username'] = $listUser['username'];
-                                // $listUser['mail']                      
-                            }
-                            ?>
-                            
-                                <td> <?php $listUser['username'] ?> </td>
-                              <td> <?php $listUser['mail'] ?></td>
-                                <td></td>
-                     </tr>
-                 </tbody>
-             </table>
-
-
+                <?php if(isset($_POST['Envoyer'])): ?>
+                    <div class='modal'>
+                        <p class="modal_text"><i>L'utilisateur a été supprimé</i></p>
+                    </div>
+                <?php endif ?>
+        
     <?php endif ?>
+
+
+
 
 <!--***************************************************-->
 <!--*-->
-<!--*             </newsletter>-->            
+<!--*             <message contact>-->            
 <!--<!-*-->
 <!--***************************************************-->
 
 <?php
+    if(isset($_GET['msg'])): ?>
+        <h2>Gestion utilisateurs</h2>
+                <table>
+                     <thead>
+                         <tr>
+                             <th colspan="5">Message</th>
+                         </tr>         
+                    </thead>
+                    
+                    <tbody>
+                             <?php foreach ($messages as $message) : ?>
+                             <tr>
+                                <td><?= $message['id'] ?></td>
+                                <td><?= $message['objet'] ?></td>
+                                <td><?= $message['message'] ?></td>
+                                <td> <?= $message['mail'] ?></td>
+                                <td><form method='POST' action='#'><input type="hidden" name="id" value='<?= $message['id'] ?>'/><input type='submit' name='Envoyer'></form></td>
+                            </tr>    
+                             <?php endforeach ?>
+                    </tbody>
+                </table>
+                
+                <?php if(isset($_POST['Envoyer'])): ?>
+                    <div class='modal'>
+                        <p class="modal_text"><i>Le message a été supprimé</i></p>
+                    </div>
+                <?php endif ?>
+        
+    <?php endif ?>
 
-if(isset($_GET['newsletter'])): ?>
-    <h2>Création d'une newsletter</h2>
-    
-        <form class ="form-group" method='POST'>
-            <p><i>Rédaction</i></p>
-            <?=$Article->input('title')?>
-            <?=$Article->imput('mail', 'email')?>
-            <?=$Article->textarea('text', 'text')?>
-            <?=$Article->submit('Envoyer')?>
-        </form>   
+
+
+
+
+
+
+
+
+
+
+
+
+<!--***************************************************-->
+<!--*-->
+<!--*             </newsletter>-->
+<!--*-->
+<!--***************************************************-->
+
+<?php
+
+    if(isset($_GET['newsletter'])): ?>
+        <h2>Création d'une newsletter</h2>
         
-        
-        <?php if(isset($_POST['Envoyer'])): ?>
-            <div class='modal'>
-            <p class="modal_text"><i>La newsletter est partie </i></p>
-            <?php endif ?>
-            </div>
+            <form class ="form-group" method='POST'>
+                <p><i>Rédaction</i></p>
+                <?=$Article->input('title')?>
+                <?=$Article->imput('mail', 'email')?>
+                <?=$Article->textarea('text', 'text')?>
+                <?=$Article->submit('Envoyer')?>
+            </form>   
             
-<?php endif ?>
-
+            
+            <?php if(isset($_POST['Envoyer'])): ?>
+                <div class='modal'>
+                <p class="modal_text"><i>La newsletter est partie </i></p>
+                <?php endif ?>
+                </div>
+                
+<?php endif ?> 

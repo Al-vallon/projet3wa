@@ -4,8 +4,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" type="text/css" />
     <link rel="stylesheet" href="vendor/CSS/style.scss"/>
     <link rel="stylesheet" href="vendor/CSS/style.css"/>
-    <link rel="stylesheet" href="vendor/CSS/tools.scss"/>
-    <link rel="stylesheet" href="vendor/CSS/tools.css"/>
     <link rel="shortcut icon" type="image/png" href="vendor/images/logo.png"/>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,32 +15,48 @@
     <header>
         <div class="container_header">
             <nav class="nav_bar">
-                <div id="logo_header"><a href="index.php"><img class="img_logo" src="vendor/images/logo.png" alt="Logo"></a></div>
-                    <div class="hamburger">
-                        <i class="fa-solid fa-bars menuIcon"></i>
-                        <i class="fa-solid fa-xmark closeIcon"></i>
-                    </div>
-            <!--<nav class="nav_bar">-->
-                    <ul class="menu">
-                       <li id="logo"><a href="index.php"><img class="img_logo"  src="vendor/images/logo.png" alt="Logo"></a></li>
-                       <li class="nav_item"><a href="index.php?page=article">Actualités</a></li>
-                       <li class="nav_item"><a href="index.php?page=propos">A propos</a></li>
-                       <li class="nav_item"><a href="index.php?page=contact">contact </a></li>
-                       <li class="nav_item"><a href="index.php?page=donation">Donation</a></li>
-                       <?php if(isset($_SESSION['user']) && $_SESSION['role'] === '1') : ?>
-                       <li class="nav_item"><a href="index.php?page=admin">Admin</a></li>
-                       <?php endif ?>
-                       <?php if(!isset($_SESSION['user']) || empty($_SESSION['user'])) : ?>
-                            <li class="nav_item_btn_co">
-                                <a href="index.php?page=connexion">
-                                    <button class="btn_co" role="button" name="btn_co">Connexion</button>
-                                </a>
-                            </li>
-                            <li class="nav_item_btn_register"><a href="index.php?page=register"><button class="btn_register" role="button" name="btn_register">Inscription</button></a></li>
-                        <?php else : ?>
-                       <li><a href="index.php?page=disconnect"><i class="fa-solid fa-right-from-bracket"></i></a></li>
-                        <?php endif ?> 
-                    </ul>
+                <div class="acc">
+                    <span>
+                        <a href="#" class="font_min" title="Diminuer la taille de police" onclick="changeFontSize(-1)">A<span></span></a>
+        				<a href="index.php" class="font_reset" title="taille de police par défaut" onclick="changeFontSize(0)">A<span></span></a>
+        				<a href="#" class="font_up" title="Augmenter la taille de la police" onclick="changeFontSize(1)" >A<span></span></a>
+            		</span>
+            	    <a><i class="fa-solid fa-moon"></i></a>
+            	    <a><i class="fa-thin fa-sun-bright"></i></a>
+            	    <a><i class="fa-solid fa-circle-half-stroke"></i></a>
+            	</div>		    
+                    
+                </div>
+                
+                <div class="logo_header"><a href="index.php"><img class="img_logo" src="vendor/images/logo.png" alt="Logo"></a>
+                </div>
+                
+                <div class="hamburger">
+                    <i class="fa-solid fa-bars menuIcon"></i>
+                    <i class="fa-solid fa-xmark closeIcon"></i>
+                </div>
+                    
+                    
+                <ul class="menu">
+                   <li class="logo"><a href="index.php"><img class="img_logo"  src="vendor/images/logo.png" alt="Logo"></a></li>
+                   <li class="menuItem"><a href="index.php?page=article">Actualités</a></li>
+                   <li class="menuItem"><a href="index.php?page=propos">A propos</a></li>
+                   <li class="menuItem"><a href="index.php?page=contact">Contact </a></li>
+                   <li class="menuItem"><a href="index.php?page=donation">Donation</a></li>
+                   <?php if(isset($_SESSION['user']) && $_SESSION['role'] === '1') : ?>
+                   <li class="menuItem"><a href="index.php?page=admin">Admin</a></li>
+                   <?php endif ?>
+                   <?php if(!isset($_SESSION['user']) || empty($_SESSION['user'])) : ?>
+                        <li class="menuItem_btn_co">
+                            <a href="index.php?page=connexion">
+                                <button class="btn_co" role="button" name="btn_co">Connexion</button>
+                            </a>
+                        </li>
+                        <li class="menuItem_btn_register"><a href="index.php?page=register"><button class="btn_register" role="button" name="btn_register">Inscription</button></a></li>
+                    <?php else : ?>
+                   <li><a href="index.php?page=disconnect"><i class="fa-solid fa-right-from-bracket"></i></a></li>
+                    <?php endif ?> 
+                </ul>
             </nav>
         </div> 
     </header>

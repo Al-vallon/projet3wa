@@ -18,11 +18,14 @@ $titleForEdit =[];
 $articleForEdit = [];
 $validFile = false;
 $listUsers=[];
+$delNickname='';
+$delMail='';
 
 // declare new Form
 $Article = new Form ($articleLabel);
 // declare new DB
 $db = new Database();
+
 
 
 // *************************************
@@ -160,7 +163,6 @@ if(isset($_SESSION['role']) && strval($_SESSION['role']=== '1')){
         
         if(isset($_POST['title']) && ($_POST['text']) && !empty($_POST['title']) && !empty($_POST['text']))
             {
-                
                 $title = htmlentities($_POST['title']);
                 $text = htmlentities($_POST['text']);
                 $id = htmlentities($_COOKIE['id']);
@@ -264,6 +266,8 @@ if(isset($_SESSION['role']) && strval($_SESSION['role']=== '1')){
         
     }
     
+    
+    
     // *************************************
     // *
     // *    DELETE USERS
@@ -274,15 +278,62 @@ if(isset($_SESSION['role']) && strval($_SESSION['role']=== '1')){
     
     if(isset($_GET['deleteUser']))
     {
-        
-        $params = [];
+
+        //delete users
+        if(isset($_POST['Envoyer']) && !empty($_POST['Envoyer']) && isset($_POST['id']) && !empty($_POST['id']))
+        {
+            $id = htmlentities($_POST['id']);
+            $params = [
+                'id' => $id,
+            ];
             
+            $queryDelete = $db->prepare('
+                DELETE FROM users 
+                WHERE id = :id',
+                $params, false
+            );
+        }
+        // select nickname & mail
+        $params = [];
         $listUsers = $db->prepare('
-            SELECT username, mail FROM users',
+            SELECT id, username, mail FROM users',
             $params, false
         );
-        
-    }    
+    }
+    
+    // *************************************
+    // *
+    // *    READING MSG
+    // *
+    // *************************************
+    
+    
+    if(isset($_GET['msg']))
+    {
+
+        //delete users
+        if(isset($_POST['Envoyer']) && !empty($_POST['Envoyer']) && isset($_POST['id']) && !empty($_POST['id']))
+        {
+            $id = htmlentities($_POST['id']);
+            $params = [
+                'id' => $id,
+            ];
+            
+            $queryDelete = $db->prepare('
+                DELETE FROM msgcontact 
+                WHERE id = :id',
+                $params, false
+            );
+        }
+        // select nickname & mail
+        $params = [];
+        $messages = $db->prepare('
+            SELECT id, objet ,message, mail 
+            FROM msgcontact
+            ORDER BY msgcontact.id DESC',
+            $params, false
+        );
+    } 
     
     
 } else{

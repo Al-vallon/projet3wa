@@ -58,14 +58,6 @@ class Form {
     public function submit(string $text='Envoyer'):string{
         return('<input id="btn" type="submit" name="'. $text.'" value="'.$text.'">');
     }
-    
-    // public function table(string $text):string {
-    //     $table='<tbody>
-    //                 <tr>
-    //                     <td></td>
-    //                     <td></td>
-    //                 </tr>
-    //             </tbody>'
-    // }
+  
     
 }

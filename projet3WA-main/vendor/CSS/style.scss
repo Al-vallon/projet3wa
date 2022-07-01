@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Buda&display=swap');
 
+
+
 $color_down1:#219EF7;
 $color_down2:#F4D328;
 $color_font:#fff;
 $black:#000000;
 $red:#ff0000;
 $inputBorder: #0d0c22;
-
+$grey:#A8A9AD;
 
 @mixin flex_center{
     display: flex;
@@ -43,8 +45,6 @@ body{
     font-family: 'Buda', cursive;
     font-size: 1em;
     box-sizing: border-box;
-    background: $color_down1;
-    // background: linear-gradient(90deg, $color_down1 20%, $color_down2 80%);
 }
 
 /**FORM**/
@@ -64,6 +64,8 @@ body{
     transition: .3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
+/*input*/
+
 input:focus, input:hover {
      outline: none;
      padding: .2rem 1rem;
@@ -81,48 +83,19 @@ input:focus::placeholder {
 }
 
 
-/**********************************************************************************************************
+/****************************************************
 *
-*                                   HEADER
+*                    HEADER
 *
-***********************************************************************************************************/
-// header{
-//     background:transparent;
-// }
+*******************************************************/
 
-#logo_header{
-    @include img_resp;
-    @include flex_center;
-}
-.img_logo{
-    width: 4rem;
+.acc{
+    
 }
 
-.nav_item{
-    margin-right: 5rem;
-    text-transform: uppercase;
-    font-weight: 600;
-    margin: 2rem;
-}
 
-.nav_item a{
-    @include list-decoration_none;
-    font-family: 'Balsamiq Sans', cursive;
-}
 
-/* burger menu*/
-.menuItem {
-  display: block;
-  margin: 2rem 4rem;
-  font-size: 1.8rem;
-  color: white;
-  text-decoration: none;
-}
-
-.menuItem:hover {
-  text-decoration: underline;
-}
-
+/* BURGER */
 .hamburger {
   position: fixed;
   z-index: 100;
@@ -138,6 +111,10 @@ input:focus::placeholder {
   display: none;
 }
 
+.showMenu {
+  transform: translateY(0);
+}
+
 .menu {
   position: fixed;
   transform: translateY(-130%);
@@ -147,7 +124,7 @@ input:focus::placeholder {
   right: 0;
   bottom: 0;
   z-index: 99;
-  background: #515151;
+  background: #CCC;
   color: white;
   list-style: none;
   padding-top: 4rem;
@@ -163,444 +140,18 @@ input:focus::placeholder {
   transform: translateY(0);
 }
 
+.menu__menuItem {
+  display: block;
+  margin: 2rem 4rem;
+  font-size: 1.8rem;
+  color: white;
+  text-decoration: none;
+}
+
+.menu--menuItem:hover {
+  text-decoration: underline;
+}
+
 ul> li a:visited {
     color: $red;
  }
-
-.btn_co{
-    border-radius: 20px;
-    border:0px;
-    background-color: $color_down1;
-    padding: 0.5rem 1rem ;
-    margin: 0em 5em;
-    cursor: pointer;
-    font-weight: bold;
-    font-family: 'Balsamiq Sans', cursive;
-    letter-spacing: 1px;
-}
-
-.btn_register{
-    border-radius: 20px;
-    background:transparent;
-    border:2px solid $red;
-    padding: 0.5rem 1rem ;
-    cursor: pointer;
-    font-weight: bold;
-    font-family: 'Balsamiq Sans', cursive;
-    letter-spacing: 1px;
-}
-
-/* pop up alert / Modal*/
-
-.modal{
-    @include flex_column;
-    @include img_resp;
-    border: 2px solid black;
-    border-radius: 15px;
-    box-shadow: 5px 10px 34px;
-    margin-top: 5rem;
-    padding: 2em;
-
-}
-
-.close-Modal {
-    position: absolute;
-    top: 39rem;
-    right: 1.5rem;
-    color: $red;
-}
-
-
-/**********************************************************************************************************
-*
-*                                       MAIN
-*
-***********************************************************************************************************/
-h1{
-    @include text-shadow;
-    font-family: 'Balsamiq Sans', cursive;
-    text-align: center;
-    padding: 5rem;
-    font-size: 3em;
-}
-
-h3{
-    @include text-shadow;
-    font-family: 'Balsamiq Sans', cursive;
-    
-}
-
-/**********************************************************************************************************
-*
-*                                       CTA
-*
-***********************************************************************************************************/
-
-.containerCTA{
-    display: flex;
-}
-
-.containerCTA_picture{
-    @include img_resp;
-    background-image: url(../images/pompom/pompom.jpg);
-    background-size: cover;
-    background-position: center;
-    height: 20rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content:flex-end;
-    padding-bottom: 1em;
-}
-
-
-.containerCTA_text p{
-    @include text-shadow;
-    text-align: center;
-    overflow: hidden;
-    color: $color_font;
-    padding:1.5rem;
-}
-
-/* P none limite le nombre de paragraphe dans le CTA */
-.p_none{
-    display: none;
-}
-
-/**********************************************************************************************************
-*
-*                                       ARTICLES
-*
-***********************************************************************************************************/
-
-.container_section{
-    @include flex_column;
-}
-
-
-/* ARTICLE 1*/ 
-.article_first{
-    @include flex_column;
-    @include img_resp;
-    border: 2px solid black;
-    border-radius: 15px;
-    box-shadow: 5px 10px 34px;
-    margin-top: 5rem;
-}
-
-/*effet zoom*/
-.article_first_picture .article_first_janeDoe {
-    transition: transform .5s ease;
-}
-
-.article_first_picture:hover .article_first_janeDoe {
-    transform: scale(1.5);
-}
-
-/* article */
-.article_first_picture{
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    justify-content: center;
-    display: flex;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.article_first_picture img{
-    @include img_resp;
-}
-
-.article_first_janeDoe{
-    @include img_resp;
-    width: 33rem;
-    border-radius: 15px 15px 0px 0px;
-}
-
-.article_first_text{
-    padding: 0.5rem;
-    background-color: cornsilk;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-}
-
-
-
-
-
-/**********************************************************************************************************
-*
-*                                           FOOTER
-*
-***********************************************************************************************************/
-.container_footer{
-    @include flex_column;
-    margin-top: 6rem;
-}
-
-.logo_footer{
-    @include img_resp;
-}
-
-.img_logo_footer{
-    width: 13rem;
-}
-
-.info{
-    @include flex_column;
-    color: $black;
-}
-
-.info a{
-    text-decoration: none;
-}
-
-.info a:visited {
-   color: $black;
-}
-
-.info p{
-    text-align: center;
-}
-
-.social{
-    @include flex_column;
-    font-weight: 400;
-    font-size: larger;
-}
-
-.social a{
-    @include text-shadow;
-    padding: 1em 0em;
-    color: $color_font;
-    text-decoration: none;
-}
-
-
-/**********************************************************************************************************
-*
-*                 *************************** TABLETTES *******************************
-*
-***********************************************************************************************************/
-@media only screen and (min-width: 768px) {
-
-    body{
-        font-size: 1.4em;
-    }
-
-    h1{
-        font-size: 2em;
-    }
-
-    .articlenonetablet{
-        display:none;
-    }
-
-    .container_section{
-        @include flex_center;
-        flex-direction: row;
-    }
-
-    /* ARTICLE 1*/ 
-    .article_first{
-        @include flex_center;
-        @include img_resp;
-        border: 2px solid black;
-        border-radius: 15px;
-        box-shadow: 5px 10px 34px;
-        margin: 2em;
-        width:20rem;
-    }
-
-    /*effet zoom*/
-    .article_first_picture .article_first_janeDoe {
-        transition: transform .5s ease;
-    }
-
-    .article_first_picture:hover .article_first_janeDoe {
-        transform: scale(1.5);
-    }
-
-    /* article */
-    
-    .article_first_picture{
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-        justify-content: center;
-        display: flex;
-        overflow: hidden;
-        cursor: pointer;
-    }
-
-    .article_first_janeDoe{
-        @include img_resp;
-        border-radius: 15px 15px 0px 0px;
-    }
-
-    .article_first_text{
-        padding: 0.5rem;
-        background-color: cornsilk;
-        border-bottom-right-radius: 15px;
-        border-bottom-left-radius: 15px;
-    }
-
-    
-}
-
-
-/**********************************************************************************************************
-*
-*                         *********************** DESKTOP **********************************
-*
-***********************************************************************************************************/
-
-@media only screen and (min-width: 1024px) {
-    body{
-        font-size: 1.4em;
-    }
-/*******************************************************
-*
-*                             header DESKTOP 
-*
-************************************************************/
-    header {
-    height: 8vh;
-    }
-      
-    .hamburger{
-        display: none;
-    }
-    
-    #logo_header{
-        display: none;
-    }
-    
-    .nav_bar{
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        justify-content: space-between;
-        align-items: center
-    }
-
- 
-    .menu {
-        position: static;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
-        top:0em;
-        left:0em;
-        list-style: none;
-        transform: translateY(0%);
-        background:transparent;
-    }
-    
-    
-    .nav_item{
-        margin-right: 1rem;
-        font-weight: 100;
-        font-size: medium;
-    }
-    
-    .nav_item a{
-        text-decoration: none;
-        margin-right: 1rem;
-    }
-    
-    #logo:first-child{
-        margin-right: auto;
-        margin-left: 2rem;
-    }
-    
-    #logo{
-        @include img_resp;
-    }
-    .img_logo{
-        width: 4rem;
-    }
-    
-
-/*********************************************************
-*
-*                      main DESKTOP
-*
-**************************************************************/
-    .containerCTA_picture{
-        height: 48rem;
-    }  
-
-    .p_none{
-        display: block;
-    }
-
-    .articlenonetablet{
-        display: block;
-    }
-
-    .container_section{
-        display: flex;
-        flex-direction: row;
-    }
-    /* ARTICLE 1*/ 
-    .article_first{
-        @include flex_column;
-        border: 2px solid black;
-        border-radius: 15px;
-        box-shadow: 5px 10px 34px;
-        margin: 2em;
-        width:80%;
-    }
-
-    /*effet zoom*/
-    .article_first_picture .article_first_janeDoe {
-        transition: transform .5s ease;
-    }
-
-    .article_first_picture:hover .article_first_janeDoe {
-        transform: scale(1.5);
-    }
-
-    /* article */
-    .article_first_picture{
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-        justify-content: center;
-        display: flex;
-        overflow: hidden;
-        cursor: pointer;
-    }
-
-    .article_first_janeDoe{
-        @include img_resp;
-        width: 33rem;
-        border-radius: 15px 15px 0px 0px;
-    }
-
-    .article_first_text{
-        padding: 0.5rem;
-        background-color: cornsilk;
-        border-bottom-right-radius: 15px;
-        border-bottom-left-radius: 15px;
-    }
-
-
-    /*********************************************************
-    *
-    *                              footer DESKTOP
-    *
-    ***********************************************************/
-
-    .container_footer{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        margin-top: 5em;
-    }
-
-    .container_footer p{
-        width:25rem;
-    }
-    
-}
