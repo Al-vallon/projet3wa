@@ -61,8 +61,7 @@ if(isset($_POST['name']) && ($_POST['mail']) && ($_POST['objet']) && ($_POST['me
             VALUES 
             (:objet,:message, :mail, :date, :name)',
             $params , true);
-                
-            // header('Location:index.php?page=home');
+            
       
         };
     

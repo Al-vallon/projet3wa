@@ -56,7 +56,7 @@ class Form {
     }
     
     public function submit(string $text='Envoyer'):string{
-        return('<input id="btn" type="submit" name="'. $text.'" value="'.$text.'">');
+        return('<input class= "btn" type="submit" name="'. $text.'" value="'.$text.'">');
     }
   
     
