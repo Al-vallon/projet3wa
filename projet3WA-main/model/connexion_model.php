@@ -52,23 +52,23 @@ if(isset($_POST['mail']) && isset($_POST['password']) && !empty($_POST['mail']) 
     if(empty($mailLength) && empty($passLength)){
     
     // check mail is on database.
-        if($resultLogin['mail'] == $mail){
-        } else {
-        $validationMail=('il y a une erreur');
-        };
-            
+        if($resultLogin !==false){
+         
         // if the mail is ok, check the password is it's ok for user's session is running 
-        if(password_verify($pass, $resultLogin['password'])){
-            $_SESSION['user'] = $mail . $pass; 
-            $_SESSION['role'] = $resultLogin['role_id']; 
-            header('Location:index.php');
-            exit();
-            
-            //else wrong register, try again
-            } else {
-                $connexion = 'il  y a une erreur, veuillez réessayer';
-            };
-            
-    }    
-       
+            if(password_verify($pass, $resultLogin['password'])){
+                $_SESSION['user'] = $mail . $pass; 
+                $_SESSION['role'] = $resultLogin['role_id'];
+                
+                header('Location:index.php');
+                exit();
+                
+                //else wrong register, try again
+                } else {
+                    $connexion = 'il  y a une erreur, veuillez réessayer';
+                };
+        }  else {
+            $connexion = 'il  y a une erreur, veuillez réessayer';
+        }  
+    }
+      
 }; 

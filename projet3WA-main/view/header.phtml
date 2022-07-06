@@ -14,27 +14,28 @@
 <body class="theme">
     <header>
         <!--<div class="container_header">-->
-        <div class="menu_acc">
-            <button class="toggleAcc" ."btn" title="menu accessibilité">
+        <div class="menuAcc">
+            <div class="toggleAcc" ."btn" title="menu accessibilité">
                 <i class="fa-solid fa-universal-access"></i>
-            </button>
-                   <div class="acc"> 
-                        <span>
-                            <a href="#" class="acc__font_min" title="Diminuer la taille de police" id='sizeDown'>A</a>
-            				<a href="#" class="acc__font_reset" title="taille de police par défaut" id='sizeDefault'>A</a>
-            				<a href="#" class="acc__font_up" title="Augmenter la taille de la police" id='sizeUp' >A</a>
-                		</span>
+            </div>
+                   <div id="acc">
+                       <div>
+                            <span>
+                                <i>Taille de la police</i>
+                                <a title="taille font -" href="#" class="acc__font_min" title="Diminuer la taille de police" id='sizeDown'>A</a>
+                				<a title="taille font 0" href="#" class="acc__font_reset" title="taille de police par défaut" id='sizeDefault'>A</a>
+                				<a title="taille font +" href="#" class="acc__font_up" title="Augmenter la taille de la police" id='sizeUp' >A</a>
+                    		</span>
+                		</div> 
                 		
-                		<div id="toggleBtn" class="dark-mode-toggle"  >
-                		    <i class="fas fa-moon" "toggleDark"></i>
+                		<button id="theme-toggle">
+                		    <i class="fas fa-moon"></i>
                 		    <i class="fa-thin fa-lightbulb-on"></i>
-                		</div>
-                		
+                		</button>
                     </div>
         </div>
+    
             <nav class="nav_bar">
-            
-                
                 <div class="logo_header"><a href="index.php"><img class="img_logo" src="vendor/images/logo.png" alt="Logo"></a>
                 </div>
                 
@@ -45,17 +46,17 @@
                     
                     
                 <ul class="menu">
-                   <li class="logo"><a href="index.php"><img class="img_logo"  src="vendor/images/logo.png" alt="Logo"></a></li>
-                   <li class=".menuItem"><a href="index.php?page=article">Actualités</a></li>
-                   <li class=".menuItem"><a href="index.php?page=propos">L'asso</a></li>
-                   <li class=".menuItem"><a href="index.php?page=contact">Contact </a></li>
-                   <li class=".menuItemm"><a href="index.php?page=donation">Donation</a></li>
+                   <li class="logo"><a title="logo"href="index.php"><img class="img_logo"  src="vendor/images/logo.png" alt="Logo"></a></li>
+                   <li class=".menuItem"><a title="Actualités"href="index.php?page=article">Actualités</a></li>
+                   <li class=".menuItem"><a title="STAFF" href="index.php?page=propos">L'asso</a></li>
+                   <li class=".menuItem"><a title="Contact" href="index.php?page=contact">Contact </a></li>
+                   <li class=".menuItemm"><a title="Don" href="index.php?page=donation">Donation</a></li>
                    <?php if(isset($_SESSION['user']) && $_SESSION['role'] === '1') : ?>
-                   <li class=".menuItem"><a href="index.php?page=admin">Admin</a></li>
+                   <li class=".menuItem"><a title="Admin" href="index.php?page=admin">Admin</a></li>
                    <?php endif ?>
                    <?php if(!isset($_SESSION['user']) || empty($_SESSION['user'])) : ?>
                         <li class=".menuItem_btn_co">
-                            <a href="index.php?page=connexion">
+                            <a title="Connexion" href="index.php?page=connexion">
                                 <button class="btn_co" role="button" name="btn_co">Connexion</button>
                             </a>
                         </li>

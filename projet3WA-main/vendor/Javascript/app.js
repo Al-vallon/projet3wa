@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", (event) =>{
   
   
   // font size
+  let counter = 0;
   const sizeDefault = document.querySelector("#sizeDefault");
   const sizeUp = document.querySelector("#sizeUp");
   const sizeDown = document.querySelector("#sizeDown");
@@ -18,15 +19,7 @@ document.addEventListener("DOMContentLoaded", (event) =>{
   // counter for redirection
   let count = 3;
   const queryCount = document.querySelector(".count");
-  
-  // put body in variable          
-    const body = document.body;
-  
- // DARK MODE
-  const togglebtn = document.querySelector(".toogleBtn");
-  const toogleDark = document.querySelector(".toggleDark");
-  const toogleLight = document.querySelector(".toggleLight");
-  
+
   
   
   /*HAMBURGER MENU*/
@@ -47,30 +40,30 @@ document.addEventListener("DOMContentLoaded", (event) =>{
 
   /* FONT SIZE INCREASE/DEACREASE*/
   
+  // let fontsize = LocalStorage.getItem('fontsize');
+  
   //get function onclick to change size 0 1 -1;
   sizeDefault.onclick = () => changeFontSize(0);
   sizeDown.onclick = () => changeFontSize(-1);
   sizeUp.onclick = () => changeFontSize(1);
   
-  let counter = 0;
+  
   
   function changeFontSize(val){
     if (document.body.style.fontSize == ""){
       document.body.style.fontSize = "1em";
     }
-    
     if (val == 0) {
       document.body.style.fontSize = "1em";
     }
-    
     if(counter++ <= 2){
       document.body.style.fontSize = parseFloat(document.body.style.fontSize) + (val * 0.3) + "em";
-      // counter++;
+  
     }else if(counter-- <= 2){
       document.body.style.fontSize = parseFloat(document.body.style.fontSize) + (val * 0.3) + "em";
-      // counter--;
     }
   }
+
   
    /* 404 REDIRECTION*/
   
@@ -92,71 +85,43 @@ document.addEventListener("DOMContentLoaded", (event) =>{
   
   
   /* TOGGLE ACCESSIBILITY MOD*/
+  
    // put toggleAcc class in variable
    let toggleAcc = document.querySelector(".toggleAcc");
-   let acc = document.querySelector('.acc') ;
+   let acc = document.getElementById('acc') ;
   
    // listen event click & function do the job
    toggleAcc.addEventListener('click', function(){
     
-     if(acc.style.display === 'none'){ 
-       acc.style.display = 'block'; 
-       }else {
-         acc.style.display = 'none'; 
-       }
+    if(acc.style.display == 'block'){ 
+      acc.style.display = 'none'; 
+      }else {
+        acc.style.display = 'block'; 
+      }
+    
+      
   });
   
   
      /* DARK MODE*/
 
-// // put class changeTheme in variable
-// const changeTheme = document.querySelector('changeTheme');
- 
-// // listen the click on body, function execute
-// body.addEventListener('click', function(){
-      
-//     if(changeTheme.classList.contains('dark')){
-//       changeTheme.classList.add('light');
-//       changeTheme.classList.remove('dark');
-      
-       
-//     } else if(changeTheme.classList.contains('light')){
-//         changeTheme.classList.add('dark');
-//     changeTheme.classList.remove('light');
-//     }
-//   });
-//   const toggleBtn = document.getElementById("toggle-btn");
-// const theme = document.querySelector("theme");
-// let darkMode = localStorage.getItem("dark-mode");
-
-
-// const enableDarkMode = () => {
-//   theme.classList.add("dark-mode-theme");
-//   toggleBtn.classList.remove("dark-mode-toggle");
-//   localStorage.setItem("dark-mode", "enabled");
-// };
-
-// const disableDarkMode = () => {
-//   theme.classList.remove("dark-mode-theme");
-//   toggleBtn.classList.add("dark-mode-toggle");
-//   localStorage.setItem("dark-mode", "disabled");
-// };
-
-// if (darkMode === "enabled") {
-//   enableDarkMode(); // set state of darkMode on page load
-// }
-
-// toggleBtn.addEventListener("click", (e) => {
-//   darkMode = localStorage.getItem("dark-mode"); // update darkMode when clicked
-//   if (darkMode === "disabled") {
-//     enableDarkMode();
-//   } else {
-//     disableDarkMode();
-//   }
-// });
-
-
-    
+  var darkMode = false;
   
-  console.log('logged')
+  // if localstorage save theme (=body) as dark but in default is ligth
+  if (localStorage.getItem('theme') === 'dark') {
+  	darkMode = true;
+  } else if (localStorage.getItem('theme') === 'light') {
+  	darkMode = false;
+  }
+
+  if (darkMode) {
+  	document.body.classList.toggle('dark');
+  }
+  
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+  	document.body.classList.toggle('dark');
+    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+	});
+  
+  console.log('logged');
 });

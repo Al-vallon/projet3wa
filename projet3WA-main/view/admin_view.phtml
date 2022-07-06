@@ -28,9 +28,8 @@ if(isset($_GET['addarticle'])): ?>
             <h4>Envoi d'une image</h4>
                 <p>Choisissez une image sur votre ordinateur (max de 3mo) puis vous cliquer sur envoyer. Ensuite votre image s'affichera au dessus du formulaire à remplir.</p>
         
-        
                 <section id="envoiImage">
-                    <form class="form-group" method="post"  enctype="multipart/form-data">
+                    <form class="form-group" method="post" action='#' enctype="multipart/form-data">
                         <input type="file" name="<?= $nameOfInputUpload ?>"/>
                         <button type ="submit" id="btn"> Envoyer </button>
                      </form>   
@@ -40,6 +39,7 @@ if(isset($_GET['addarticle'])): ?>
                                 <?= $isPost ? $message : null ?>
                             </div>
                         <?php endif ?>    
+
                 </section>
         </div>
     
@@ -52,21 +52,20 @@ if(isset($_GET['addarticle'])): ?>
     
     
         <?php if($validFile): ?>
-            <form class="form-group" method='POST'>
+            <form class="form-group" method='POST' action='#'>
                 <?=$Article->input('title')?>
                 <?=$Article->textarea('text', 'text')?>
-                <?=$Article->submit()?>
+                <?=$Article->submit('Créer')?>
             </form>
         
-            
-            <?php if(isset($_POST['Envoyer'])): ?>
+         
+            <?php if(isset($_POST['Créer']) && !empty($_POST['Créer'])): ?>
                 <div class='modal'>
                         <p class="modal_text"><i>Article créé !</i></p>
                 </div>  
-                <?= var_dump(isset($_POST['Envoyer'])) ?>
             <?php endif ?>
                 
-        <?php endif ?>
+        <?php endif ?>  
         
 <?php endif ?>
 
@@ -87,7 +86,7 @@ if(isset($_GET['addarticle'])): ?>
         
         <!--select the title of article for mod.-->
             
-            <form class="form-group" method='POST'>
+            <form class="form-group" method='POST' action='#'>
                 <?=$Article->selectorForeach('id', $titleForEdit)?>
                 <?=$Article->submit()?>
             </form>
@@ -131,7 +130,7 @@ if(isset($_GET['addarticle'])): ?>
         <h2>Supprimer un article</h2>
         <!--select the title of article for mod.-->
         
-            <form class ="form-group" method='POST'>
+            <form class ="form-group" method='POST' action='#'>
                 <p><i>Sélectionner l'article à supprimer </i></p>
                 <?=$Article->selectorForeach('id', $titleForEdit)?>
                 <?=$Article->submit()?>
@@ -169,7 +168,7 @@ if(isset($_GET['addarticle'])): ?>
                                 <td><?= $listUser['id'] ?></td>
                                 <td><?= $listUser['username'] ?></td>
                                 <td> <?= $listUser['mail'] ?></td>
-                                <td><form method='POST' action='#'><input type="hidden" name="id" value='<?= $listUser['id'] ?>'/><input type='submit' name='Envoyer'></form></td>
+                                <td><form method='POST' action='#'><input type="hidden" name="id" value='<?= $listUser['id'] ?>'/><input type='submit' name='Envoyer' value='Envoyer' ></form></td>
                             </tr>    
                              <?php endforeach ?>
                     </tbody>
@@ -209,7 +208,7 @@ if(isset($_GET['addarticle'])): ?>
                                 <td><?= $message['objet'] ?></td>
                                 <td><?= $message['message'] ?></td>
                                 <td> <?= $message['mail'] ?></td>
-                                <td><form method='POST' action='#'><input type="hidden" name="id" value='<?= $message['id'] ?>'/><input type='submit' name='Envoyer'></form></td>
+                                <td><form method='POST' action='#'><input type="hidden" name="id" value='<?= $message['id'] ?>'/><input type='submit' name='Envoyer' value='Envoyer'></form></td>
                             </tr>    
                              <?php endforeach ?>
                     </tbody>
@@ -225,16 +224,6 @@ if(isset($_GET['addarticle'])): ?>
 
 
 
-
-
-
-
-
-
-
-
-
-
 <!--***************************************************-->
 <!--*-->
 <!--*             </newsletter>-->
@@ -246,9 +235,9 @@ if(isset($_GET['addarticle'])): ?>
     if(isset($_GET['newsletter'])): ?>
         <h2>Création d'une newsletter</h2>
         
-            <form class ="form-group" method='POST'>
+           <form class ="form-group" method='POST' action='#'>
                 <p><i>Rédaction</i></p>
-                <?=$Article->input('title')?>
+               <?=$Article->input('title')?>
                 <?=$Article->imput('mail', 'email')?>
                 <?=$Article->textarea('text', 'text')?>
                 <?=$Article->submit('Envoyer')?>

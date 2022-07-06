@@ -29,10 +29,10 @@ declare(strict_types=1);
         } else if($_GET['page'] === 'disconnect'){
             require('./controller/deco_controller.php');
         
-        } else if($_GET['page'] === 'error'){
+        } else {
             require('./controller/error_controller.php');
-            
         }
+        
         
     } else {
         require('./controller/home_controller.php');
