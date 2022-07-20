@@ -37,4 +37,6 @@ declare(strict_types=1);
     } else {
         require('./controller/home_controller.php');
     };
+
+
 ?> 

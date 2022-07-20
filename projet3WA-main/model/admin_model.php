@@ -1,7 +1,6 @@
 <?php
 session_start();
 // declare(strict_types=1); don't work with session_start 
-// session_start();
 date_default_timezone_set('Europe/Paris');
 
 $articleLabel = [
@@ -33,8 +32,7 @@ $db = new Database();
 // *//CREATION ARTICLE
 // *
 // *************************************
-if(isset($_SESSION['role']) && strval($_SESSION['role']=== '1')){
-
+if(isset($_SESSION['role']) && $_SESSION['role']=== 1){
     if(isset($_GET['addarticle'])){
     
     // upload pictures.
@@ -82,9 +80,7 @@ if(isset($_SESSION['role']) && strval($_SESSION['role']=== '1')){
         {
             $textLength ='le champs contient trop de caractères';
         }
-    
-    //insert data for articles
-    
+            //insert data for articles    
             if(empty($textLength))
             {
                 $params = [
@@ -131,8 +127,7 @@ if(isset($_SESSION['role']) && strval($_SESSION['role']=== '1')){
                 $params, false
             );
         
-                //foreach to remplace id by title in array
-        
+             //foreach to remplace id by title in array        
             foreach ($listTitle as $titre)
             {
                 $titleForEdit[$titre['id']] = $titre['titre'];
@@ -166,18 +161,16 @@ if(isset($_SESSION['role']) && strval($_SESSION['role']=== '1')){
                 $title = htmlentities($_POST['title']);
                 $text = htmlentities($_POST['text']);
                 $id = htmlentities($_COOKIE['id']);
-                $date = date ("Y-m-d H:i:s");
-    
-                //secure length of input
+                $date = date ("Y-m-d H:i:s");    
                 
+                //secure length of input                
                 if(strlen($title)>255 || strlen($text)>5000) 
                 {
                     $textLength ='le champs contient trop de caractères';
                 }
                 
                 
-                //insert info for articles
-                 
+                //insert info for articles                 
                 if(empty($textLength))
                 {
                     $params = [
@@ -200,10 +193,8 @@ if(isset($_SESSION['role']) && strval($_SESSION['role']=== '1')){
                     );
                     setcookie('id', 'ciao', time() -10);
                         
-                }
-              }
-            
-
+                }              
+            }            
         //update input select with the new value of mod
         
         $params = [];
@@ -278,7 +269,6 @@ if(isset($_SESSION['role']) && strval($_SESSION['role']=== '1')){
     
     if(isset($_GET['deleteUser']))
     {
-
         //delete users
         if(isset($_POST['Envoyer']) && !empty($_POST['Envoyer']) && isset($_POST['id']) && !empty($_POST['id']))
         {
@@ -310,10 +300,8 @@ if(isset($_SESSION['role']) && strval($_SESSION['role']=== '1')){
     
     if(isset($_GET['msg']))
     {
-
         //delete users
-        if(isset($_POST['Envoyer']) && !empty($_POST['Envoyer']) && isset($_POST['id']) && !empty($_POST['id']))
-        {
+        if(isset($_POST['Envoyer']) && !empty($_POST['Envoyer']) && isset($_POST['id']) && !empty($_POST['id'])){
             $id = htmlentities($_POST['id']);
             $params = [
                 'id' => $id,

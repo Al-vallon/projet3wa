@@ -34,7 +34,7 @@ class Form {
     }
     
     public function input(string $name, string $type='text'):string{
-        return($this->label($name). '<input placeholder="'.$name.'" minlength="6" type="'.$type.'" id="'. $name .'" name="'.$name.'" value="'. $this->getValue($name) .'" ></input>'. $this-> showError($name));
+        return($this->label($name). '<input placeholder="'.$name.'" minlength="5" type="'.$type.'" id="'. $name .'" name="'.$name.'" value="'. $this->getValue($name) .'" ></input>'. $this-> showError($name));
     }
     
     public function textarea(string $name):string{
@@ -56,7 +56,7 @@ class Form {
     }
     
     public function submit(string $text='Envoyer'):string{
-        return('<input class= "btn" type="submit" name="'. $text.'" value="'.$text.'">');
+        return('<input class= "btnSubmit" type="submit" name="'. $text.'" value="'.$text.'">');
     }
   
     

@@ -1,9 +1,7 @@
 <?php
 session_start();
 // pas de declare(strict_types=1) il y aconflit avec session start.
-// create a cookie session
 date_default_timezone_set('Europe/Paris');
-
 // input mail pass
 $formLabel = [
     'mail' => 'Mail *',
@@ -41,12 +39,12 @@ if(isset($_POST['mail']) && isset($_POST['password']) && !empty($_POST['mail']) 
     if(strlen($mail)>50)
     {
         $mailLength='le mail contient trop de caractère';
-    }
+    };
     
     if(strlen($passLength)>255)
     {
         $passLength='le password contient trop de caractère';
-    }
+    };
     
     
     if(empty($mailLength) && empty($passLength)){
@@ -68,7 +66,7 @@ if(isset($_POST['mail']) && isset($_POST['password']) && !empty($_POST['mail']) 
                 };
         }  else {
             $connexion = 'il  y a une erreur, veuillez réessayer';
-        }  
-    }
+        };  
+    };
       
 }; 

@@ -22,48 +22,42 @@ $msgLength='';
 $msgOk='';
 
 if(isset($_POST['name']) && ($_POST['mail']) && ($_POST['objet']) && ($_POST['message']) && !empty($_POST['name']) && !empty($_POST['mail']) && !empty($_POST['objet']) && !empty($_POST['message'])){
-        $name = htmlentities($_POST['name']);
-        $mail = htmlentities($_POST['mail']);
-        $objet = htmlentities($_POST['objet']);
-        $message = htmlentities($_POST['message']);
-        $date = date("Y-m-d H:i:s");
-      
-      
-        // secure the length inputs.
-        if(strlen($objet)>255){
-            $objetLength ='le titre contient trop de caractères';
-        }
-        
-        if(strlen($message)>1000){
-            $msgLength = 'Le message contient plus de 1000 caractères';
-        } 
-        
-        if(strlen($mail)>50){
-            $mailLength = 'le mail contient trop de caractères';
-        }
-        
-        if (strlen($name)>50){
-          $nameLength ='le nom est trop long'; 
-        }
-         
+    $name = htmlentities($_POST['name']);
+    $mail = htmlentities($_POST['mail']);
+    $objet = htmlentities($_POST['objet']);
+    $message = htmlentities($_POST['message']);
+    $date = date("Y-m-d H:i:s");     
+    // secure the length inputs.
+    if(strlen($objet)>255){
+        $objetLength ='le titre contient trop de caractères';
+    };
     
-        if(empty($nameLength) && empty($mailLength) && empty($objetLength) && empty($msgLength)){
-            $params = [
-                    'objet' => $objet,
-                    'message' => $message,
-                    'mail' => $mail,
-                    'date' => $date,
-                    'name' => $name,
-                    ];
-            $queryContact = $db->prepare('
-            INSERT INTO msgcontact 
-            (objet, message, mail, date, name)
-            VALUES 
-            (:objet,:message, :mail, :date, :name)',
-            $params , true);
-            
-      
-        };
+    if(strlen($message)>1000){
+        $msgLength = 'Le message contient plus de 1000 caractères';
+    };
+    
+    if(strlen($mail)>50){
+        $mailLength = 'le mail contient trop de caractères';
+    };
+    
+    if (strlen($name)>50){
+        $nameLength ='le nom est trop long'; 
+    };             
+    if(empty($nameLength) && empty($mailLength) && empty($objetLength) && empty($msgLength)){
+        $params = [
+                'objet' => $objet,
+                'message' => $message,
+                'mail' => $mail,
+                'date' => $date,
+                'name' => $name,
+                ];
+        $queryContact = $db->prepare('
+        INSERT INTO msgcontact 
+        (objet, message, mail, date, name)
+        VALUES 
+        (:objet,:message, :mail, :date, :name)',
+        $params , true);                  
+    };
     
 };
 

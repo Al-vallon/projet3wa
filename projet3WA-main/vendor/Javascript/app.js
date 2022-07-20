@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", (event) =>{
   
   // hamburger variable
   const menu = document.querySelector(".menu");
-  const menuItems = document.querySelectorAll(".menuItem");
+  // const menuItems = document.querySelectorAll(".menuItem");
   const hamburger= document.querySelector(".hamburger");
   const closeIcon= document.querySelector(".closeIcon");
   const menuIcon = document.querySelector(".menuIcon");
@@ -17,10 +17,9 @@ document.addEventListener("DOMContentLoaded", (event) =>{
   const sizeDown = document.querySelector("#sizeDown");
   
   // counter for redirection
-  let count = 3;
+  let count = 4;
   const queryCount = document.querySelector(".count");
 
-  
   
   /*HAMBURGER MENU*/
   function toggleMenu() {
@@ -38,49 +37,20 @@ document.addEventListener("DOMContentLoaded", (event) =>{
   hamburger.addEventListener("click", toggleMenu);
   
 
-  /* FONT SIZE INCREASE/DEACREASE*/
-  
-  // let fontsize = LocalStorage.getItem('fontsize');
-  
-  //get function onclick to change size 0 1 -1;
-  sizeDefault.onclick = () => changeFontSize(0);
-  sizeDown.onclick = () => changeFontSize(-1);
-  sizeUp.onclick = () => changeFontSize(1);
-  
-  
-  
-  function changeFontSize(val){
-    if (document.body.style.fontSize == ""){
-      document.body.style.fontSize = "1em";
-    }
-    if (val == 0) {
-      document.body.style.fontSize = "1em";
-    }
-    if(counter++ <= 2){
-      document.body.style.fontSize = parseFloat(document.body.style.fontSize) + (val * 0.3) + "em";
-  
-    }else if(counter-- <= 2){
-      document.body.style.fontSize = parseFloat(document.body.style.fontSize) + (val * 0.3) + "em";
-    }
-  }
-
-  
    /* 404 REDIRECTION*/
-  
   
   function decrement() {
       count--;
       if(count == 0) {
           window.location = 'index.php';
       } else {
-          // document.querySelector(".count").innerHTML = count;
           queryCount.innerHTML = count; 
-          setTimeout(decrement, 3000);
+          setTimeout(decrement, 1000);
       }
   }
   
   if(queryCount){
-    setTimeout(decrement, 3000);
+    setTimeout(decrement(), 4000);
   }
   
   
@@ -103,14 +73,72 @@ document.addEventListener("DOMContentLoaded", (event) =>{
   });
   
   
+  /* FONT SIZE INCREASE/DEACREASE*/
+
+  
+  //get function onclick to change size 0 1 -1;
+  sizeDefault.onclick = () => changeFontSize(0);
+  sizeDown.onclick = () => changeFontSize(-1);
+  sizeUp.onclick = () => changeFontSize(1);
+  
+  
+  function changeFontSize(val){
+    if (document.body.style.fontSize == ""){
+      document.body.style.fontSize = "1em";
+    }
+    if (val === 0) {
+      document.body.style.fontSize = "1em";
+      counter = 0
+    } else if(val === -1){
+      if(counter > -3){
+        counter--
+        document.body.style.fontSize = parseFloat(document.body.style.fontSize) + (val * 0.3) + "em";
+      }
+    } else if(val === 1){
+      console.log(counter);
+      if(counter < 3){
+        counter++
+        document.body.style.fontSize = parseFloat(document.body.style.fontSize) + (val * 0.3) + "em";
+    
+      }
+    }
+
+  }
+  
+  // function changeFontSize(val){
+  //   if (document.body.style.fontSize == ""){
+  //     document.body.style.fontSize = "1em";
+  //   }
+  //   if (val === 0) {
+  //     document.body.style.fontSize = "1em";
+  //     counter = 0
+  //   } else if(val === -1){
+  //     if(counter > -3){
+  //       counter--
+  //       localStorage.getItem(document.body.style.fontSize) = localStorage.getItem(parseFloat(document.body.style.fontSize) + (val * 0.3) + "em");
+  //     }
+  //   } else if(val === 1){
+  //     console.log(counter);
+  //     if(counter < 3){
+  //       counter++
+  //       document.body.style.fontSize = parseFloat(document.body.style.fontSize) + (val * 0.3) + "em";
+    
+  //     }
+  //   }
+
+  // }
+  
+  
+  
+  
      /* DARK MODE*/
 
   var darkMode = false;
   
   // if localstorage save theme (=body) as dark but in default is ligth
-  if (localStorage.getItem('theme') === 'dark') {
+  if(localStorage.getItem('theme') === 'dark'){
   	darkMode = true;
-  } else if (localStorage.getItem('theme') === 'light') {
+  } else if(localStorage.getItem('theme') === 'light'){
   	darkMode = false;
   }
 

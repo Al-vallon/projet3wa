@@ -42,46 +42,46 @@ if(isset($_POST['username']) && ($_POST['password']) && ($_POST['mail']) && !emp
     $params, true);
 
 
-// secure the length inputs.
+    // secure the length inputs.
 
-if (strlen($username)>50){
-  $userLength ='le nom d utilisateur est trop long';
-}
-
-if (strlen($passLength)>255){
-    $passLength='le password contient trop de caractère';
-}
-
-if (strlen($mail)>50){
-    $mailLength='le mail contient trop de caractère';
-}
-
-    
-
-if(empty($userLength) && empty($passLength) && empty($mailLength)){
-    // checking if the mail is on the database
-   
-    if($resultMail !== false){
-        $wrongMail='email deja utiliser!';
-    }else{
-        $params = [
-            'role_id' => 2,
-            'username' => $username,
-            'password' => $password,
-            'mail' => $mail,
-            'reg_date' => $reg_date,
-            ];
-            
-        $query = $db->prepare('
-            INSERT INTO users 
-            (role_id, username, password, mail, reg_date) 
-            VALUES (:role_id, :username, :password, :mail, :reg_date)',
-            $params, true);
-     
-        
-        header('Location:index.php?page=connexion'); //redirection to log in page.
-        
-        }
+    if (strlen($username)>50){
+    $userLength ='le nom d utilisateur est trop long';
     };
-}
+
+    if (strlen($passLength)>255){
+        $passLength='le password contient trop de caractère';
+    };
+
+    if (strlen($mail)>50){
+        $mailLength='le mail contient trop de caractère';
+    };
+
+        
+
+    if(empty($userLength) && empty($passLength) && empty($mailLength)){
+        // checking if the mail is on the database
+    
+        if($resultMail !== false){
+            $wrongMail='email deja utiliser!';
+            }else{
+            $params = [
+                'role_id' => 2,
+                'username' => $username,
+                'password' => $password,
+                'mail' => $mail,
+                'reg_date' => $reg_date,
+            ];
+                
+            $query = $db->prepare('
+                INSERT INTO users 
+                (role_id, username, password, mail, reg_date) 
+                VALUES (:role_id, :username, :password, :mail, :reg_date)',
+                $params, true);
+        
+            
+            header('Location:index.php?page=connexion'); //redirection to log in page.
+                
+        };
+    };
+};
 ?>
