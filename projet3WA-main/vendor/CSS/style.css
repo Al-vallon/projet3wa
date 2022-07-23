@@ -19,7 +19,7 @@ h2 {
   text-shadow: 0.5em 0.2em 0.8em black;
   font-family: 'Roboto', cursive;
   text-align: center;
-  padding: 1.5em 3em 2em;
+  padding: 1.5em 0em 2em;
   font-size: 2em; }
 
 h3 {
@@ -42,7 +42,6 @@ a {
   flex-direction: column;
   line-height: 1.5em;
   border: 2px solid transparent;
-  padding: .2rem 0;
   outline: none;
   background-color: transparent;
   color: #0d0c22;
@@ -661,6 +660,10 @@ td, th {
   .container_section_block {
     display: flex; }
 
+  .form-group {
+    margin-left: 20em;
+    margin-right: 20em; }
+
   /* ARTICLE */
   .article_first {
     display: flex;
@@ -734,7 +737,10 @@ td, th {
       margin-left: 20em; }
 
   .btnSubmit {
-    margin: 0em 20em; }
+    margin: 0em 10em;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
 
   .container_footer {
     display: flex;

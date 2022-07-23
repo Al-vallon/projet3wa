@@ -87,7 +87,7 @@ h2{
     @include text_shadow;
     @include fonts;
     @include text_align_center;
-    padding: 1.5em 3em 2em;
+    padding: 1.5em 0em 2em;
     font-size: 2em;
 }
 
@@ -115,7 +115,6 @@ a{
     flex-direction: column;
     line-height: 1.5em;
     border: 2px solid transparent;
-    padding: .2rem 0;
     outline: none;
     background-color: transparent;
     color: $inputBorder;
@@ -894,11 +893,6 @@ body.dark {
 
 
 ////////////////////////// main DESKTOP//////////////////////////////////////
-
-    // h1{
-    //     padding-top: 2em;
-    //     @include text_align_center;
-    // }
     
     .h2 {
         @include text_align_center;
@@ -922,6 +916,10 @@ body.dark {
         display: flex;
     }
     
+    .form-group {
+        margin-left: 20em;
+        margin-right: 20em;
+    }
     
     /* ARTICLE */ 
     .article_first{
@@ -1014,7 +1012,10 @@ body.dark {
      }
     
     .btnSubmit{
-        margin: 0em 20em;
+        margin: 0em 10em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     
