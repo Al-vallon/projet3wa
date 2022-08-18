@@ -20,7 +20,8 @@ declare(strict_types=1);
              return $result;
         }
         
-        // create article skeletor for phtml articke
+       
+        // create article skeletor for phtml article
         protected function creatArticle(array $article):string
         {
             $html ='<div class="article">';

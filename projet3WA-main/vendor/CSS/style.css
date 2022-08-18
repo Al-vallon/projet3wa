@@ -33,6 +33,9 @@ a {
   color: black;
   text-decoration: none; }
 
+.under-headline {
+  text-align: center; }
+
 /**FORM**/
 .form-group {
   margin: 3em;
@@ -176,8 +179,7 @@ ul li a:hover {
 
 .menuAcc {
   text-align: center;
-  width: 4em;
-  padding: 0em 0em 1em 3em; }
+  width: 4em; }
   .menuAcc .toggleAcc {
     top: 2em;
     left: 3em;
@@ -187,6 +189,9 @@ ul li a:hover {
     cursor: pointer;
     margin-top: 2em; }
   .menuAcc #acc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     display: none; }
   .menuAcc .acc_font .acc__font_min {
     font-size: 0.7em;
@@ -210,6 +215,8 @@ body.dark {
       color: #f4d328; }
     body.dark .showMenu .btn_register {
       color: #f4d328; }
+  body.dark .menuAcc .acc_font {
+    color: #f4d328; }
   body.dark .form-group {
     color: #f4d328; }
     body.dark .form-group input {
@@ -334,8 +341,7 @@ body.dark {
   height: auto;
   border: 2px solid black;
   border-radius: 15px;
-  box-shadow: 5px 10px 34px;
-  margin-top: 5em; }
+  box-shadow: 5px 10px 34px; }
   .article_first .article_first_janeDoe {
     width: 100%;
     height: auto;
@@ -367,7 +373,9 @@ body.dark {
   transform: scale(1.5); }
 
 .container_article_view {
-  margin: 6em; }
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
 
 .container_staff {
   display: flex;
@@ -546,8 +554,7 @@ td, th {
     height: auto;
     border: 2px solid black;
     border-radius: 15px;
-    box-shadow: 5px 10px 34px;
-    margin: 2em 0em; }
+    box-shadow: 5px 10px 34px; }
     .article_first .article_first_janeDoe {
       width: 100%;
       height: auto;
@@ -617,6 +624,9 @@ td, th {
     color: #fe9702;
     transition: 1s; }
 
+  .menuAcc {
+    padding: 0em 2em 1.5em 0em; }
+
   .menuItem {
     display: block;
     margin: 0em 0em;
@@ -642,6 +652,9 @@ td, th {
 
   .img_logo {
     width: 4rem; }
+
+  h1 {
+    font-size: 3em; }
 
   .h2 {
     text-align: center;
@@ -672,7 +685,7 @@ td, th {
     border: 2px solid black;
     border-radius: 15px;
     box-shadow: 5px 10px 34px;
-    margin: 2em; }
+    margin: 2em 0em; }
     .article_first .article_first_janeDoe {
       width: 100%;
       height: auto;
@@ -682,8 +695,7 @@ td, th {
       padding: 0.5rem;
       background-color: cornsilk;
       border-bottom-right-radius: 15px;
-      border-bottom-left-radius: 15px;
-      width: 98%; }
+      border-bottom-left-radius: 15px; }
 
   /* article */
   .article_first_picture {

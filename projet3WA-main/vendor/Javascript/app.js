@@ -105,35 +105,11 @@ document.addEventListener("DOMContentLoaded", (event) =>{
 
   }
   
-  // function changeFontSize(val){
-  //   if (document.body.style.fontSize == ""){
-  //     document.body.style.fontSize = "1em";
-  //   }
-  //   if (val === 0) {
-  //     document.body.style.fontSize = "1em";
-  //     counter = 0
-  //   } else if(val === -1){
-  //     if(counter > -3){
-  //       counter--
-  //       localStorage.getItem(document.body.style.fontSize) = localStorage.getItem(parseFloat(document.body.style.fontSize) + (val * 0.3) + "em");
-  //     }
-  //   } else if(val === 1){
-  //     console.log(counter);
-  //     if(counter < 3){
-  //       counter++
-  //       document.body.style.fontSize = parseFloat(document.body.style.fontSize) + (val * 0.3) + "em";
-    
-  //     }
-  //   }
-
-  // }
-  
-  
   
   
      /* DARK MODE*/
 
-  var darkMode = false;
+  let darkMode = false;
   
   // if localstorage save theme (=body) as dark but in default is ligth
   if(localStorage.getItem('theme') === 'dark'){

@@ -105,6 +105,10 @@ a{
     text-decoration: none;
 }
 
+.under-headline{
+    @include text_align_center;
+}
+
 /**FORM**/
 
 .form-group {
@@ -285,7 +289,6 @@ ul li a:hover {
 .menuAcc{
     @include text_align_center;
     width: 4em;
-    padding: 0em 0em 1em 3em;
     
     .toggleAcc{
       top: 2em;
@@ -298,11 +301,12 @@ ul li a:hover {
     }
         
     #acc{
+        @include flex_column;
         display: none;
     }
     
     .acc_font{
-    
+        
         .acc__font_min{
             font-size: 0.7em;
             text-decoration: none;
@@ -322,6 +326,7 @@ ul li a:hover {
     
 }
 
+
 ////////////////////////// DARK MOD ////////////////////////////////////// 
 
 
@@ -338,6 +343,11 @@ body.dark {
 	            color: $color_down2;
 	        }
 	        
+	}
+	.menuAcc{
+	    .acc_font{
+	        color: $color_down2;
+	    }
 	}
 	.form-group{
 	    color: $color_down2;
@@ -507,7 +517,7 @@ body.dark {
     border: 2px solid $black;
     border-radius: 15px;
     box-shadow: 5px 10px 34px;
-    margin-top: 5em;
+    
     
     .article_first_janeDoe{
         @include img_resp;
@@ -546,7 +556,7 @@ body.dark {
     }
 
 .container_article_view{
-    @include margin_center;
+    @include flex_column;
 }
 
 
@@ -764,7 +774,7 @@ body.dark {
         border: 2px solid black;
         border-radius: 15px;
         box-shadow: 5px 10px 34px;
-        margin: 2em 0em;
+        
         .article_first_janeDoe{
             @include img_resp;
             border-radius: 15px 15px 0px 0px;
@@ -858,6 +868,9 @@ body.dark {
         transition: 1s;
     }    
     
+    .menuAcc{
+         padding: 0em 2em 1.5em 0em;
+    }
     .menuItem{
         display: block;
         margin: 0em 0em;
@@ -894,6 +907,10 @@ body.dark {
 
 ////////////////////////// main DESKTOP//////////////////////////////////////
     
+    h1{
+        font-size: 3em;
+    }
+    
     .h2 {
         @include text_align_center;
         padding: 0em;
@@ -927,7 +944,7 @@ body.dark {
         border: 2px solid black;
         border-radius: 15px;
         box-shadow: 5px 10px 34px;
-        margin: 2em;
+        margin: 2em 0em;
         .article_first_janeDoe{
             @include img_resp;
             width: 33rem;
@@ -938,7 +955,7 @@ body.dark {
             background-color: rgba(255, 248, 220, 1);
             border-bottom-right-radius: 15px;
             border-bottom-left-radius: 15px;
-            width: 98%;
+            
         }
     }
 
